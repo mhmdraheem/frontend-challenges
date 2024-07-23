@@ -3,29 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Features COmparisons Box</title>
+    <title>Features Comparisons Box</title>
     <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="responsive.css">
+    <script src="https://kit.fontawesome.com/9b220e24a6.js" crossorigin="anonymous"></script>
 
     <style>
-        * {
-            box-sizing: border-box;
-            padding: 0;
-            margin: 0;
-        }
-
         ul {
             list-style: none;
         }
 
-        .container {
-            position: relative;
+        body {
             background-color: #EEEEEE;
+        }
+
+        .plans {
+            margin-top: 50px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        @media (max-width: 576px) {
+            .plans {
+                flex-direction: column;
+                gap: 80px;
+                align-items: center;
+            }
+        }
+
+        .plan {
+            position: relative;
+            width: 300px;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .plan .head {
+            padding: 10px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .plan.basic .head {
+            background-color: #F44336;
+        }
+
+        .plan.pro {
+            position: relative;
         }
 
         .label {
             position: absolute;
-            top: 0;
-            right: 100px;
+            top: -40px;
+            right: 30px;
             height: 30px;
             width: 80px;
             display: flex;
@@ -36,42 +69,27 @@
             background-color: #2196F3;
         }
 
+        @media (max-width: 576px) {
+            .label {
+                right: 50%;
+                transform: translateX(calc(50% - 15px));
+            }
+        }
+        
         .label::after {
             content: "";
             position: absolute;
             top: 0;
             right: 0;
-            /* height: 15px; */
             transform: translateX(100%);
             border-width: 15px;
             border-style: solid;
-            /* border-color: #2196F3 transparent #2196F3 #2196F3; */
-            border-color: red transparent red red;
+            border-color: #2196F3 transparent #2196F3 #2196F3;
         }
 
-        .plans {
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .plan {
-            position: relative;
-            width: 300px;
-            background-color: white;
-            border-radius: 5px;
-        }
-
-        .plan .head {
-            padding: 10px;
-            overflow: hidden;
-            color: white;
+        .label span {
             font-weight: bold;
-        }
-
-        .plan.basic .head {
-            background-color: #F44336;
+            margin-left: 10px;
         }
 
         .plan.pro .head {
@@ -131,15 +149,16 @@
         .wrong .line2 {
             transform: rotateZ(45deg);
         }
+
+        .info {
+            margin-left: auto;
+            color: grey;
+            font-size: 12px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-
-    <div class="label">
-        <span>Save 50%</span>
-        <!-- <span></span> -->
-    </div>
         <div class="plans">
             <div class="plan basic">
                 <div class="head">Basic</div>
@@ -235,6 +254,9 @@
                 </div>
             </div>
             <div class="plan pro">
+                <div class="label">
+                    <span>Save 50%</span>
+                </div>
                 <div class="head">Professional</div>
                 <div class="content">
                     <ul>
@@ -309,6 +331,7 @@
                                 <div class="box"></div>
                             </div>
                             Ranking System And Achievements
+                            <i class="fa-solid fa-circle-info info"></i>
                         </li>
                         <li>
                             <div class="icon correct">

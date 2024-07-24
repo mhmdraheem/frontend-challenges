@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative titles</title>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="responsive.css">
+    <style>
+        :root {
+            --color-blue: #2C6CCF;
+            --color-purble: #CF2C2C;
+            --color-green: #309E0E;
+            --color-orange: #CD661A;
+        }
+
+        body {
+            padding: 20px;
+        }
+
+        h3 {
+            width: 220px;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #F1F1F1;
+            position: relative;
+        }
+
+        div h3:nth-child(1) {
+            color: var(--color-blue);
+        }
+
+        div h3:nth-child(1)::before,
+        div:nth-of-type(1) h3:nth-child(1)::after,
+        div:nth-of-type(2) h3:nth-child(1)::after {
+            background-color: var(--color-blue);
+        }
+
+        div h3:nth-child(2) {
+            color: var(--color-purble);
+        }
+
+        div h3:nth-child(2)::before,
+        div:nth-of-type(1) h3:nth-child(2)::after,
+        div:nth-of-type(2) h3:nth-child(2)::after {
+            background-color: var(--color-purble);
+        }
+
+        div h3:nth-child(3) {
+            color: var(--color-green);
+        }
+
+        div h3:nth-child(3)::before,
+        div:nth-of-type(1) h3:nth-child(3)::after,
+        div:nth-of-type(2) h3:nth-child(3)::after {
+            background-color: var(--color-green);
+        }
+
+        div h3:nth-child(4) {
+            color: var(--color-orange);
+        }
+
+        div h3:nth-child(4)::before,
+        div:nth-of-type(1) h3:nth-child(4)::after,
+        div:nth-of-type(2) h3:nth-child(4)::after {
+            background-color: var(--color-orange);
+        }
+
+        h3::before {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            height: 2px;
+            width: 50%;
+        }
+
+        h3::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+        }
+
+        div:nth-of-type(1) h3::after {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+        }
+
+        div:nth-of-type(2) h3::after {
+            width: 16px;
+            height: 16px;
+        }
+
+        div:nth-of-type(3) h3::after {
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 8px;
+            
+        }
+
+        div:nth-of-type(3) h3:nth-child(1)::after {
+            border-color: transparent transparent var(--color-blue) transparent;
+        }
+
+        div:nth-of-type(3) h3:nth-child(2)::after {
+            border-color: transparent transparent var(--color-purble) transparent;
+        }
+
+        div:nth-of-type(3) h3:nth-child(3)::after {
+            border-color: transparent transparent var(--color-green) transparent;
+        }
+
+        div:nth-of-type(3) h3:nth-child(4)::after {
+            border-color: transparent transparent var(--color-orange) transparent;
+        }
+
+        div:nth-of-type(4) h3::after {
+            bottom: -16px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 8px;
+        }
+
+        div:nth-of-type(4) h3:nth-child(1)::after {
+            border-color: var(--color-blue) transparent transparent transparent;
+        }
+
+        div:nth-of-type(4) h3:nth-child(2)::after {
+            border-color: var(--color-purble) transparent transparent transparent;
+        }
+
+        div:nth-of-type(4) h3:nth-child(3)::after {
+            border-color: var(--color-green) transparent transparent transparent;
+        }
+
+        div:nth-of-type(4) h3:nth-child(4)::after {
+            border-color: var(--color-orange) transparent transparent transparent;
+        }
+    </style>
+</head>
+<body>
+    <h1>Circle</h1>
+    <div>
+        <h3>Creative Title</h3>
+        <h3>Creative Title</h3>
+        <h3>Creative Title</h3>
+        <h3>Creative Title</h3>
+    </div>
+    <h1>Box</h1>
+    <div>
+        <h3>Creative Title</h3>
+        <h3>Creative Title</h3>
+        <h3>Creative Title</h3>
+        <h3>Creative Title</h3>
+    </div>
+    <h1>Triangle Up</h1>
+    <div>
+        <h3>Creative Title</h3>
+        <h3>Creative Title</h3>
+        <h3>Creative Title</h3>
+        <h3>Creative Title</h3>
+    </div>
+    <h1>Triangle Down</h1>
+    <div>
+        <h3>Creative Title</h3>
+        <h3>Creative Title</h3>
+        <h3>Creative Title</h3>
+        <h3>Creative Title</h3>
+    </div>
+</body>
+</html>

@@ -125,9 +125,12 @@
             transform: translate(-50%, -50%);
             width: 0;
             height: 0;
-            opacity: 0.7;
-            transition: 0.2s;
-            background-color: var(--background-color);
+            transition: 0.1s;
+            background-color: rgba(238, 238, 238, 40%);
+        }
+
+        header nav a:hover {
+            color: #0000FF;
         }
 
         header nav a:hover::before {
@@ -160,7 +163,7 @@
             font-size: 14px;
         }
 
-        section.benifits {
+        section.benifits .container {
             display: flex;
             gap: 10px;
             align-items: center;
@@ -378,27 +381,29 @@
         </div>
     </section>
     <section id="benifits" class="benifits">
-        <figure>
-            <img src="cat.png" alt="">
-            <figcaption>
-                <h3>Design Quality</h3>
-                <p>Our design is the best. We craft with very high quality from scratch</p>    
-            </figcaption>
-        </figure>
-        <figure>
-            <img src="logo.png" alt="">
-            <figcaption>
-                <h3>Cheap Price</h3>
-                <p>Our price is the cheapesr. We create from scratch</p>
-            </figcaption>
-        </figure>
-        <figure>
-            <img src="cat.png" alt="">
-            <figcaption>
-                <h3>Amazing Perfomance</h3>
-                <p>Our code is clean and professional. The speed and performance is our target</p>
-            </figcaption>
-        </figure>
+        <div class="container">
+            <figure>
+                <img src="cat.png" alt="">
+                <figcaption>
+                    <h3>Design Quality</h3>
+                    <p>Our design is the best. We craft with very high quality from scratch</p>    
+                </figcaption>
+            </figure>
+            <figure>
+                <img src="logo.png" alt="">
+                <figcaption>
+                    <h3>Cheap Price</h3>
+                    <p>Our price is the cheapesr. We create from scratch</p>
+                </figcaption>
+            </figure>
+            <figure>
+                <img src="cat.png" alt="">
+                <figcaption>
+                    <h3>Amazing Perfomance</h3>
+                    <p>Our code is clean and professional. The speed and performance is our target</p>
+                </figcaption>
+            </figure>
+        </div>
     </section>
     <section id="about" class="about">
         <div class="container">

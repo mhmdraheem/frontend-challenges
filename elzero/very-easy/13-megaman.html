@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Hide Paragraph</title>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="responsive.css">
+    <style>
+        div {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            height: 500px;
+            
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        div::before {
+            content: "";
+            left: 0;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            position: absolute;
+            background-color: white;
+            
+            border-top: 10px solid #343A40;
+            border-left: 10px solid #343A40;
+            border-bottom: 10px solid #343A40;
+        }
+
+        div::after {
+            content: "";
+            right: 0;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            position: absolute;
+            background-color: #343A40;
+
+            border-top: 10px solid white;
+            border-bottom: 10px solid white;
+        }
+
+        img {
+            z-index: 999;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img src="megaman.png" alt="">
+    </div>
+</body>
+</html>

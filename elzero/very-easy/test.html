@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="responsive.css">
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        div:first-of-type {
+            width: 200px;
+            background-color: yellow;
+            display: flex;
+            align-items: stretch;
+            /* flex-direction: column; */
+        }
+
+        div div:first-of-type {
+            width: 60px;
+            height: 150px;
+            background-color: red;
+        }
+
+        div div:last-of-type {
+            background-color: aliceblue;
+            display: flex;
+            flex-direction: column;
+        }
+
+        div div div:first-of-type {
+            width: 60px;
+            height: 50px;
+            /* flex-grow: 1; */
+            background-color: black;
+        }
+
+        div div div:last-of-type {
+            width: 60px;
+            /* height: 30px; */
+            height: 100%;
+            /* flex-grow: 1; */
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div></div>
+        <div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</body>
+</html>

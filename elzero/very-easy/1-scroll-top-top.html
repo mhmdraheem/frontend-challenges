@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll To Top</title>
+    <style>
+
+        :root {
+            scroll-behavior: smooth;
+        }
+
+        div.txt {
+            margin-top: 500px;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        a.up {
+            padding: 10px;
+            border-radius: 5px;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: fit-content;
+            color: white;
+            background-color: red;
+            cursor: pointer;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="txt">One</div>
+    <div class="txt">Two</div>
+    <div class="txt">Three</div>
+    <div class="txt">Four</div>
+    <a class="up" href="#">Up</a>
+</body>
+</html>

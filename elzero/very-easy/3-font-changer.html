@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Changer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=Metal+Mania&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            font-family: var(--font);
+        }
+
+        .container {
+            padding: 20px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        select {
+            width: 100%;
+            padding: 20px;
+        }
+
+        p {
+            padding: 20px;
+            background-color: #EEEEEE;
+            margin-top: 20px;
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <select name="font-type">
+            <option value="open-sans" >Open Sans</option>
+            <option value="metal-mania">Metal Mania</option>
+            <option value="caesar" selected>Caesar</option>
+        </select>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque 
+            fugiat dolorem, incidunt ex cum commodi vitae assumenda, id dolores saepe o
+            dio rerum quibusdam velit. Rem sapiente omnis dolorem neque? Tempora?
+        </p>
+    </div>
+</body>
+<script>
+    
+    const fonstMap = new Map([
+        ["open-sans", '"Open Sans", sans-serif'],
+        ["metal-mania", '"Metal Mania", system-ui'],
+        ["caesar", '"Caesar Dressing", system-ui']
+    ]);
+    
+    window.onload = applyFont;
+
+    let list = document.querySelector("select");
+    list.onchange = applyFont;
+
+    function applyFont() {
+        document.documentElement.style.setProperty("--font", fonstMap.get(list.value));
+    }
+
+</script>
+</html>

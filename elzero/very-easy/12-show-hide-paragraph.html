@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Hide Paragraph</title>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="responsive.css">
+    <style>
+        button {
+            color: white;
+            background-color: aqua;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+        }
+
+        p {
+            position: absolute;
+            left: 50%;
+            bottom: -50px;
+            transform: translateX(-50%);
+            width: 200px;
+            background-color: red;
+            padding: 10px;
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <button>Click
+        <p>This is My Patagraph</p>
+    </button>
+</body>
+<script>
+    let btn = document.querySelector("button");
+    btn.onclick = () => {
+        let p = document.querySelector("p");
+        let v = getComputedStyle(p).getPropertyValue("visibility");
+        if(v === 'hidden') {
+            p.style.visibility = "visible";
+        } else {
+            p.style.visibility = "hidden";
+        }
+    }
+</script>
+</html>

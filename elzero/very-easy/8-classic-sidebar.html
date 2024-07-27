@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classic Sidebar</title>
+    <script src="https://kit.fontawesome.com/9b220e24a6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="responsive.css">
+    <style>
+        :root {
+            --primary-color: grey;
+            --header-color: black;
+        }
+        
+        body {
+            color: var(--primary-color);
+        }
+
+        aside {
+            float: right;
+            padding: 20px;
+            max-width: 300px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+
+        h2 {
+            width: fit-content;
+            font-size: 18px;
+            color: var(--header-color);
+            margin-top: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        h2::after {
+            content: "";
+            position: absolute;
+            background-color: blue;
+            width: 50px;
+            height: 1px;
+            top: 50%;
+            right: 0;
+            transform: translateX(calc(100% + 20px));
+        }
+
+        .categories ul li a {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .categories ul li:not(:last-of-type) {
+            border-bottom: 1px solid #d4d3d3;
+        }
+
+        ul li div:nth-of-type(2) {
+            padding: 5px;
+            font-size: 13px;
+            border-radius: 5px;
+            color: black;
+            margin-right: 0;
+            margin-left: auto;
+            background-color: #d4d3d3;
+        }
+
+        .gallery-imgs {
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+        }
+
+        .gallery-imgs img {
+            max-width: 100%;
+        }
+
+        label {
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            display: inline-block;
+            position: relative;
+        }
+
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            appearance: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        input[type="checkbox"]:checked  {
+            appearance: auto;
+        }
+
+        .archives li {
+            padding: 10px;
+        }
+
+        .archives li a {
+            display: block;
+            width: 100%;
+        }
+
+        .archives i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <div class="categories">
+                <h2 class="header">Category List</h2>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <div>National</div>
+                            <div>69</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div>National</div>
+                            <div>25</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div>Sports</div>
+                            <div>18</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div>Magazine</div>
+                            <div>37</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div>Health</div>
+                            <div>12</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="gallery">
+                <h2 class="header">Gallery</h2>
+                <div class="gallery-imgs">
+                    <label for="img1">
+                        <input type="checkbox" name="img1" id="img1">
+                        <img src="cat.png" alt="cat">
+                    </label>
+                    <label for="img2">
+                        <input type="checkbox" name="img2" id="img2">
+                        <img src="logo.png" alt="cat">
+                    </label>
+                    <label for="img3">
+                        <input type="checkbox" name="img3" id="img3">
+                        <img src="cat.png" alt="cat">
+                    </label>
+                    <label for="img4">
+                        <input type="checkbox" name="img4" id="img4">
+                        <img src="logo.png" alt="cat">
+                    </label>
+                    <label for="img5">
+                        <input type="checkbox" name="img5" id="img5">
+                        <img src="cat.png" alt="cat">
+                    </label>
+                    <label for="img6">
+                        <input type="checkbox" name="img6" id="img6">
+                        <img src="logo.png" alt="cat">
+                    </label>
+                </div>
+            </div>
+            <div class="archives">
+                <h2 class="header">Archives</h2>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <i class="fa-regular fa-folder"></i>
+                            <span>Aug 2020</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa-regular fa-folder"></i>
+                            <span>Sep 2020</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa-regular fa-folder"></i>
+                            <span>Oct 2020</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa-regular fa-folder"></i>
+                            <span>Nov 2020</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        <div style="clear: both;"></div>
+    </div>
+</body>

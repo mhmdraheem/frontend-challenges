@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Offer Box</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/9b220e24a6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<style>
+    
+    * {
+        font-family: "Roboto", sans-serif;
+        font-weight: 100;
+        font-style: normal;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .container {
+        padding: 60px;
+        background-color: #51509B;
+    }
+
+    h2, p {
+        color: white;
+    }
+
+    h2 {
+        font-size: 35px;
+        font-weight: 400;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .packages {
+        width: 100%;
+        margin-top: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @media (max-width: 768px) {
+        .packages {
+            flex-direction: column;
+            gap: 20px;
+        }
+    }
+
+    .package {
+        background-color: white;
+        padding: 30px;
+        width: 50%;
+        border-radius: 5px;
+    }
+
+    @media (max-width: 768px) {
+        .package {
+            width: 100%;
+        }
+    }
+
+    .package .header {
+        margin-bottom: 10px;
+    }
+
+    .package .header i {
+        color: gold;
+        margin-right: 5px;
+    }
+
+    .package .header h3 {
+        font-weight: 500;
+        display: inline;
+        color: #4A5568;
+        position: relative;
+    }
+
+    .package .header h3::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 8px;
+        background-color: #FFEABE;
+        z-index: -1;
+    }
+
+    .package li {
+        font-size: 13px;
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .package .price {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 0 20px;
+    }
+
+    @media (max-width: 576px) { 
+        .package .price {
+            flex-direction: column;
+        }
+    }
+
+    .package .price span {
+        font-size: 35px;
+        font-weight: 300;
+        color: #4A5568;
+    }
+
+    .package .price span sub,
+    .package .price span sup {
+        font-size: 18px;
+        font-weight: 100;
+    }
+
+    .package .price button {
+        color: white;
+        font-size: 12px;
+        font-weight: 600;
+        background-color: #E5AF40;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    @media (max-width: 576px) { 
+        .package .price button {
+            width: 100%;
+            margin-top: 10px
+        }
+    }
+
+    span.team-price {
+        font-size: 10px;
+    }
+
+    span.team-price a {
+        color: black;
+        font-weight: bold;
+    }
+
+    span.team-price a:hover {
+        text-decoration: underline;
+    }
+
+    .package:first-child {
+        z-index: 2;
+    }
+  
+    .package:last-child {
+        position: relative;
+        top: 0;
+        left: -5px;
+        z-index: 1;
+        box-shadow: inset 11px 0px 10px 0px #b6b4b4;
+    }
+
+    @media (max-width: 768px) {
+        .package:last-child {
+            box-shadow: none;
+            left: 0;
+        }
+    }
+</style>
+<body>
+    <div class="container">
+        <h2>Buy the course &#x1F918;</h2>
+        <p>Join over 2,300 developers who have already stepped up
+            thier database performane game
+        </p>
+        <div class="packages">
+            <div class="package premium">
+                <div class="header">
+                    <i class="fa-solid fa-star"></i>
+                    <h3>Premium Package</h3>
+                </div>
+                <ul>
+                    <li>
+                        Access to a total of 28 lessons
+                    </li>
+                    <li>
+                        Includes 6 additional lessons on natural sorting
+                        , full-text searching and geospatial queries
+                    </li>
+                    <li>
+                        Full source code for all essons, including MYSQL, Postgress
+                        and SQLite versions (where possible)
+                    </li>
+                    <li>
+                        Over two full hours of video content
+                    </li>
+                    <li>
+                        Stream online or download videos
+                    </li>
+                </ul>
+                <div class="price">
+                    <span><sup>$</sup>149<sub>USD</sub></span>
+                    <button>Buy Now</button>
+                </div>
+                <span class="team-price">Buying for your team? <a href="#">view the team pricing</a></span>
+            </div>
+            <div class="package essential">
+                <div class="header">
+                    <i class="fa-solid fa-check"></i>
+                    <h3>Essentials Package</h3>
+                </div>
+                <ul>
+                    <li>
+                        Access to the first 22 lessons
+                    </li>
+                    <li>
+                        Just under two hours of video content
+                    </li>
+                    <li>
+                        Strean online or download vodeos
+                    </li>
+                </ul>
+                <div class="price">
+                    <span><sup>$</sup>99<sub>USD</sub></span>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

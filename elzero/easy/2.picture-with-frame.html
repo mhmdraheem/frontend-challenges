@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Offer Box</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/9b220e24a6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<style>
+    
+    * {
+        font-family: "Roboto", sans-serif;
+        font-weight: 100;
+        font-style: normal;
+    }
+
+    .intro-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+    }
+
+    .intro-section > figure {
+        border: 10px solid #F88992;
+        display: flex;
+        align-items: center;
+        padding: 30px 0;
+    }
+
+    .intro-section > figure img {
+        max-width: 100%;
+        position: relative;
+        left: -40px;
+        border-radius: 3px;
+    }
+
+    @media (max-width: 567px) {
+        .intro-section > figure {
+            display: none;
+        }
+    }
+
+    .intro-section .details {
+        flex-basis: 50%;
+        display: flex;
+        flex-direction: column;
+        counter-reset: c;
+    }
+
+    @media (max-width: 567px) {
+        .intro-section .details {
+            flex-basis: 100%;
+        }
+    }
+
+    .intro-section .details h1 {
+        font-weight: 500;
+        font-size: 35px;
+        margin-bottom: 10px;
+    }
+
+    .intro-section .details a {
+        text-decoration: none;
+        color: #F88992;
+        margin-bottom: 20px;
+        font-weight: 500;
+        margin-left: 45px;
+        position: relative;
+    }
+
+    .intro-section .details a::before {
+        content: "";
+        width: 27px;
+        height: 2px;
+        background-color: #F88992;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateX(calc(-100% - 10px));
+    }
+
+    .intro-section .details a::after {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border: 1px solid #F88992;;
+        position: absolute;
+        top: 50%;
+        left: -20px;
+        transform: translate(calc(-100% - 10px), -50%);
+    }
+
+    .intro-section .details p {
+        line-height: 1.7;
+        font-size: 13px;
+        margin-bottom: 30px;
+    }
+
+    .intro-section .details .steps {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    @media (max-width: 567px) {
+        .intro-section .details .steps {
+            flex-direction: column;
+            gap: 20px;
+        }
+    }
+
+    .intro-section .details .steps figure {
+        display: inline;
+        position: relative;
+        border: 1px solid grey;
+    }
+
+    .intro-section .details .steps img {
+        width: 100px;
+        max-width: 100%;
+    }
+
+    @media (max-width: 567px) {
+        .intro-section .details .steps img {
+            width: 300px;
+        }
+    }
+
+    .intro-section .details .steps figure::before {
+        content: "0" counter(c);
+        counter-increment: c;
+        bottom: 5px;
+        right: 10px;
+        font-size: 25px;
+        font-weight: bold;
+        color: grey;
+        position: absolute;
+    }
+
+    .intro-section .details .steps figure::after {
+        content: "";
+        top: 3px;
+        right: 3px;
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-width: 10px;
+        border-style: solid;
+        border-color: red red transparent transparent;
+    }
+
+    .intro-section .details .steps figcaption {
+        font-size: 10px;
+        font-weight: bold;
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="container">
+        <section class="intro-section">
+            <figure>
+                <img src="team.jpeg" alt="">
+            </figure>
+            <div class="details">
+                <h1>
+                    We Are Here to Dream!<br>
+                    Our Team Is Here To Serve You
+                </h1>
+                <a href="#">about us</a>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Veritatis odio ab nobis, ipsa quis quos cumque aliquam 
+                    ipsam adipisci odit ducimus fuga iusto sequi. Aliquid 
+                    rerum deserunt quaerat nemo maiores?
+                </p>
+                <div class="steps">
+                    <figure>
+                        <img src="shoes.jpg" alt="">
+                        <figcaption>Visit Our Gym</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="shoes.jpg" alt="">
+                        <figcaption>Work Out</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="shoes.jpg" alt="">
+                        <figcaption>Get Result</figcaption>
+                    </figure>
+                </idv>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

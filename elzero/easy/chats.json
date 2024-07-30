@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "contact": {
+            "id": "1",
+            "name": "Alaa aldin Mohamed",
+            "avatar": "cat.png"
+        },
+        "messages": [
+            {
+                "text": "Good morning Mohamed! This is Alaa aldin",
+                "senderId": "1"
+            },
+            {
+                "text": "How are you today?",
+                "senderId": "1"
+            },
+            {
+                "text": "Hey, Alaa! I'm great and you?",
+                "senderId": "1001"
+            },
+            {
+                "text": "Great, thanks for asking",
+                "senderId": "1"
+            },
+            {
+                "text": "Good, how can I help you today?",
+                "senderId": "1001"
+            }
+        ]
+    }
+]

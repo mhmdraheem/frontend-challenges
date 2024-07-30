@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="responsive.css">
+    <style>
+
+        body {
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+
+        .letters {
+            display: flex;
+            gap: 20px;
+        }
+
+        .e {
+            display: grid;
+            grid-template-areas: "c r1 r1 r1"
+                                 "c . . ."
+                                 "c . . ."
+                                 "c r2 r2 r2"
+                                 "c . . ."
+                                 "c . . ."
+                                 "c r3 r3 r3";
+            grid-template-rows: repeat(9, 80px);
+            grid-template-columns: repeat(4, 80px);
+        }
+
+        .e div,
+        .l div {
+            background-color: #323234;
+        }
+
+        .e div.c {
+            grid-area: c;
+            position: relative;
+        }
+
+        .e div.r1 {
+            grid-area: r1;
+        }
+
+        .e div.r2 {
+            grid-area: r2;
+        }
+
+        .e div.r3 {
+            grid-area: r3;
+        }
+
+        .c::before {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: orange;
+            top: 20px;
+            right: -220px;
+            animation-name: e-animation;
+            animation-duration: 5s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes e-animation {
+            0%, 100% {
+                right: -220px;
+                top: 20px;
+            }
+
+            7.5% {
+                right: 20px;
+                top: 20px;
+            }
+
+            14% {
+                right: 20px;
+                top: 260px;
+            }
+
+            22.5% {
+                right: -220px;
+                top: 260px;
+            }
+
+            30% {
+                right: 20px;
+                top: 260px;
+            }
+
+            37.5% {
+                right: 20px;
+                top: 500px;
+            }
+
+            45% {
+                right: -220px;
+                top: 500px;
+            }
+
+            52.5% {
+                right: 20px;
+                top: 500px;
+            }
+
+            60% {
+                right: 20px;
+                top: 20px;
+            }
+
+            67.5% {
+                right: -220px;
+                top: 20px;
+            }
+        }
+
+        .l {
+            display: grid;
+            grid-template-areas: "l1 . . ."
+                                 "l1 . . ."
+                                 "l1 . . ."
+                                 "l1 . . ."
+                                 "l1 . . ."
+                                 "l1 . . ."
+                                 "l1 l2 l2 l2";
+            grid-template-rows: repeat(7, 80px);
+            grid-template-columns: repeat(5, 80px);
+        }
+
+        .l div.l1 {
+            grid-area: l1;
+            position: relative;
+        }
+
+        .l div.l2 {
+            grid-area: l2;
+        }
+
+        .l1::before {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: orange;
+            bottom: 20px;
+            right: -220px;
+            opacity: 0;
+            animation-name: l-animation;
+            animation-duration: 5s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-fill-mode: forwards;
+            animation-delay: 3.8s;
+        }
+
+        @keyframes l-animation {
+            1% {
+                opacity: 1;
+            }
+
+            10% {
+                right: 20px;
+                bottom: 20px;
+                opacity: 1;
+            }
+
+            20% {
+                right: 20px;
+                bottom: 500px;
+                opacity: 1;
+            }
+
+            30%, 100% {
+                right: 20px;
+                bottom: 500px;
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="letters">
+        <div class="e">
+            <div class="c"></div>
+            <div class="r1"></div>
+            <div class="r2"></div>
+            <div class="r3"></div>
+        </div>
+        <div class="l">
+            <div class="l1"></div>
+            <div class="l2"></div>
+        </div>
+    </div>
+</body>
+</html>

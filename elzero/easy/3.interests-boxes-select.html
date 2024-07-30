@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interst boxes select</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/9b220e24a6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<style>
+    :root {
+        --main-purple-color: #5c48f1;
+        --elements-background-color: #eeecfd;
+        --element-border-color: #e0e0e1;
+    }
+
+    h1 {
+        color: var(--main-purple-color);
+        text-align: center;
+        background-color: #eee;
+        padding: 20px;
+    }
+
+    .interests {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    label {
+        width: 200px;
+        height: 150px;
+        position: relative;
+        cursor: pointer;
+        border: 2px solid var(--element-border-color);
+        border-radius: 5px;;
+    }
+
+    label::before {
+        content: "";
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 25px;
+        height: 25px;
+        border: 2px solid var(--element-border-color);
+        border-radius: 5px;
+    }
+
+    label::after {
+        content: "";
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        width: 17px;
+        height: 17px;
+        background-color: transparent;
+        border-radius: 5px;
+    }
+
+    label input {
+        display: none;
+    }
+
+    label:has(input:checked){
+        background-color: #eee;
+        border-color: var(--main-purple-color);
+    }
+
+    label:has(input:checked)::before {
+        border-color: var(--main-purple-color);
+    }
+
+    label:has(input:checked)::after {
+        background-color: var(--main-purple-color);
+    }
+
+    label:hover::before  {
+        border-color: var(--main-purple-color);
+    }
+
+    label:hover::after  {
+        background-color: var(--elements-background-color);
+    }
+
+    label i.interest {
+        font-size: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--main-purple-color);
+        margin-top: 50px;
+        margin-bottom: 10px;
+    }
+
+    label span {
+        color: var(--main-purple-color);
+        display: block;
+        width: fit-content;
+        margin: 0 auto;
+        font-weight: bold;
+    }
+</style>
+<body>
+    <div class="container">
+        <h1 class="header">Choose Interests</h1>
+        <div class="interests">
+            <label for="i1">
+                <input type="checkbox" name="i1" id="i1">
+                <i class="fa-solid fa-house interest interest"></i>
+                <span>Interest</span>
+            </label>
+            <label for="i2">
+                <input type="checkbox" name="i2" id="i2">
+                <i class="fa-regular fa-user interest"></i>
+                <span>Interest</span>
+            </label>
+            <label for="i3">
+                <input type="checkbox" name="i3" id="i3">
+                <i class="fa-brands fa-twitter interest"></i>
+                <span>Interest</span>
+            </label>
+            <label for="i4">
+                <input type="checkbox" name="i4" id="i4">
+                <i class="fa-regular fa-envelope interest"></i>
+                <span>Interest</span>
+            </label>
+            <label for="i5">
+                <input type="checkbox" name="i5" id="i5">
+                <i class="fa-regular fa-heart interest"></i>
+                <span>Interest</span>
+            </label>
+            <label for="i6">
+                <input type="checkbox" name="i6" id="i6">
+                <i class="fa-brands fa-discord interest"></i>
+                <span>Interest</span>
+            </label>
+            <label for="i7">
+                <input type="checkbox" name="i7" id="i7">
+                <i class="fa-solid fa-camera-retro interest"></i>
+                <span>Interest</span>
+            </label>
+            <label for="i8">
+                <input type="checkbox" name="i8" id="i8">
+                <i class="fa-regular fa-face-smile interest"></i>
+                <span>Interest</span>
+            </label>
+        </div>
+    </div>
+</body>
+</html>

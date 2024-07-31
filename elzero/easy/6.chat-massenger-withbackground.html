@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/9b220e24a6.js" crossorigin="anonymous"></script>
+    <script async src="https://kit.fontawesome.com/9b220e24a6.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="responsive.css">
 </head>
@@ -43,12 +43,12 @@
         position: relative;
         z-index: 999;
         background-color: white;
-        height: 400px;
+        height: 100vh;
     }
 
     .chatbox .contacts-menu {
-        width: 300px;
-        height: 400px;
+        min-width: 300px;
+        height: 100%;
         border-right: 1px solid #EEEEEE;
         padding-top: 20px;
         padding-bottom: 20px;
@@ -124,8 +124,9 @@
         border-bottom: none;
     }
 
-    .chatbox .contacts-menu ul li img {
+    img.avatar {
         width: 40px;
+        height: 40px;
         max-width: 100%;
         border-radius: 50%;
     }
@@ -176,6 +177,11 @@
         flex-grow: 1;
         overflow-y: scroll;
         scrollbar-width: thin;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        min-width: 600px;
+        height: 100%;
     }
 
     .massaging-container {
@@ -183,23 +189,104 @@
     }
 
     .massaging .header {
+        padding: 10px;
         font-size: 13px;
         background-color: #ECEFF1;
         position: sticky;
         top:0;
         left: 0;
+        z-index: 999;
+        display: flex;
+        justify-content: flex-start;
+        gap: 10px;
+    }
+
+    .massaging .header .header-name {
+        align-self: center;
+        font-weight: 300;
     }
 
     .massaging .body {
-        height: 1000px;
+        padding: 20px;
+    }
+
+    .massaging .body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .massaging .body .day-separator {
+        align-self: center;
+        margin: 10px 0;
+        font-size: 10px;
+        text-align: center;
+        background-color: grey;
+        padding: 5px 8px;
+        border-radius: 4px;
+        color: white;
+    }
+
+    .massaging .body .message {
+        padding: 5px 10px;
+        width: fit-content;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        color: white;
+        font-weight: 300;
+        font-size: 13px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .massaging .body .message.received {
+        background-color: var(--blue-color);
+        position: relative;
+        align-self: flex-start;
+    }
+
+    .massaging .body .message.sent {
+        background-color: grey;
+        align-self: flex-end;
+        position: relative;
+    }
+
+    .massaging .body .message.received::before,
+    .massaging .body .message.sent::before {
+        content: "";
+        position: absolute;
+        top: calc(50% - 5px);
+        border-width: 5px;
+        border-style: solid;
+        
+    }
+
+    .massaging .body .message.received::before {
+        left: -10px;
+        border-color: transparent var(--blue-color) transparent transparent;
+    }
+
+
+    .massaging .body .message.sent::before {
+        right: -10px;
+        border-color: transparent transparent transparent grey;
     }
 
     .massaging .footer {
         position: sticky;
-        bottom: 10px;
+        bottom: 0;
         left: 0;
+        background-color: white;
+        z-index: 999;
+        margin-top: auto;
     }
     
+    .massaging .body .message .message-time {
+        align-self: flex-end;
+        font-size: 10px;
+        font-weight: inherit;
+    }
+
     .massaging .footer .massaging-container {
         position: relative;
     }
@@ -213,6 +300,7 @@
         outline: none;
         padding-left: 30px;
         padding-right: 55px;
+        font-size: 13px;
     }
 
     .massaging .footer .massaging-container i {
@@ -248,158 +336,288 @@
     .massaging .footer .massaging-container i:nth-of-type(3):hover {
         color: var(--blue-color);
     }
+
+    .massaging .footer input.attach-file {
+        display: none;
+    }
 </style>
 <body>
-    <div class="page">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="chatbox">
-                <div class="contacts-menu">
-                    <div class="header">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" name="search" id="search" placeholder="Search">
-                    </div>
-                    <ul>
-                        <!-- <div class="contact-row">
-                            <li>
-                                <img src="product.jpeg" alt="">
-                                <div class="contact">
-                                    <div class="name">xog Woofsonr</div>
-                                    <div class="msg">I have forgotten how i feel</div>
-                                </div>
-                                <span class="date">12:25 AM</span>
-                            </li>
-                        </div> -->
-                    </ul>
-                </div>
-                <div class="massaging">
-                        <div class="header">
-                            <div class="massaging-container">
-                                To: <b>Drake</b>
-                            </div>
-                        </div>
-                        <div class="body">
-                            
-                        </div>
-                        <div class="footer">
-                            <div class="massaging-container">
-                                <input type="text" id="chat-txt">
-                                <i class="fa-solid fa-paperclip"></i>
-                                <i class="fa-regular fa-face-smile"></i>
-                                <i class="fa-solid fa-paper-plane"></i>
-                            </div>
-                        </div>
-                    </div>
+    <div class="chatbox">
+        <div class="contacts-menu">
+            <div class="header">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" name="search" id="search" placeholder="Search">
+            </div>
+            <ul></ul>
+        </div>
+        <div class="massaging">
+            <div class="header"></div>
+            <div class="body"></div>
+            <div class="footer">
+                <div class="massaging-container">
+                    <form class="chat-msg-form">
+                        <input type="text" class="chat-txt">
+                    </form>
+                    <i class="fa-solid fa-paperclip paperclip" tool>
+                        <input class="attach-file" type="file" name="attach-file" id="attach-file">
+                    </i>
+                    <i class="fa-regular fa-face-smile emoji-btn"></i>
+                    <i class="fa-solid fa-paper-plane send-msg-btn"></i>
                 </div>
             </div>
         </div>
     </div>
-
     <script>
-
         const myId = "1001";
+        let activeDataModel = {};
+        let chatsMap = new Map();
         
-        loadJson("./chats.json").then(json => {
-            console.log(json);
-            loadChats(json);
-        })
+        loadJsonDocument("./chats.json").then(json => {
+            chatsMap = new Map(Object.entries(json));
+            renderContactsMenu(chatsMap); 
+        }).then(() => {
+            let contactRows = document.querySelectorAll(".contacts-menu .contact-row");
+            let searchField = document.querySelector(".contacts-menu .header input");
+
+            searchField.onkeyup = () => {
+                contactRows.forEach(contactRow => filterContactsRows(contactRow));
+            };
             
-        let contactsMenu = document.querySelector(".contacts-menu");
-        let contactRows = contactsMenu.querySelectorAll(".contact-row");
-    
-        let search = contactsMenu.querySelector(".header input");
-        search.onkeyup = (e) => {
-            contactRows.forEach(contactRow => {
-                let name = contactRow.querySelector(".contact .name");
-                let msg = contactRow.querySelector(".contact .msg");
-                let nameVal = name.innerHTML.toLowerCase();
-                let msgVal = msg.innerHTML.toLowerCase();
-                let searchVal = search.value.toLowerCase();
-                let isSearchEmpty = search.value.lenght == 0;
-                const spanStart = "<span class=\"matched\">";
-                const spanEnd = "</span>";
-    
-                if(nameVal.includes("span")) {
-                    nameVal = nameVal.replaceAll(spanStart, "").replaceAll(spanEnd, "");
-                }
-    
-                if(isSearchEmpty || nameVal.includes(searchVal)) {
-                    contactRow.classList.remove("hidden");
-                    name.innerHTML = nameVal.replace(
-                        searchVal, spanStart + searchVal + spanEnd
-                    );
-                } else {
-                    contactRow.classList.add("hidden");
-                }
-            });
-        };
-    
-        contactRows.forEach(contactRow => {
-            contactRow.onclick = (e) => {
-                let active = contactsMenu.querySelector(".contact-row.active");
-                if(active) {
-                    active.classList.toggle("active")
-                }
-                contactRow.classList.add("active");
-            }
+            contactRows.forEach(contactRow => contactRow.onclick = contactRowCLickCallback);
         });
-    
-        async function loadJson(filename) {
+            
+        async function loadJsonDocument(filename) {
             let file = await fetch(filename);
             return file.json();
         }
         
-        function loadChats(json) {
-            // ...
-            let nameDiv = document.createElement("div");
-            nameDiv.classList.add("name");
-            nameDiv.innerHTML = "name 123";
-    
-            let msgDiv = document.createElement("div");
-            msgDiv.classList.add("msg");
-            msgDiv.innerHTML = "message 123";
-    
-            let contactDiv = document.createElement("div");
-            contactDiv.classList.add("contact");
-            contactDiv.appendChild(nameDiv);
-            contactDiv.appendChild(msgDiv);
-    
-            let li = document.createElement("li");
-    
-            let avatarImg = document.createElement("img");
-            avatarImg.src = "product.jpeg";
-    
-            let dateSpan = document.createElement("span");
-            dateSpan.classList.add("date");
-            dateSpan.innerHTML = "12:25 AM";
-    
-            let contactRowDiv = document.createElement("div");
-            contactRowDiv.classList.add("contact-row");
-            contactRowDiv.appendChild(li);
-    
-            li.appendChild(avatarImg);
-            li.appendChild(contactDiv);
-            li.appendChild(dateSpan);
-    
-            let ul = document.querySelector("ul");
-            ul.appendChild(contactRowDiv);
+        function renderContactsMenu(chatsMap) {
+            chatsMap.forEach((obj, key) => {
+
+                let id = document.createElement("div");
+                id.classList.add("id");
+                id.style.display = "none";
+                id.innerHTML = key;
+        
+                let name = document.createElement("div");
+                name.classList.add("name");
+                name.innerHTML = obj.contact.name;
+        
+                let lastMessage = obj.messages[obj.messages.length - 1];
+                let msg = document.createElement("div");
+                msg.classList.add("msg");
+                msg.innerHTML = lastMessage.text;
+        
+                let contact = document.createElement("div");
+                contact.classList.add("contact");
+                contact.appendChild(name);
+                contact.appendChild(msg);
+        
+                let avatar = document.createElement("img");
+                avatar.classList.add("avatar");
+                avatar.src = obj.contact.avatar;
+        
+                let date = document.createElement("span");
+                date.classList.add("date");
+                date.innerHTML = getTime12(lastMessage.date);
+        
+                let li = document.createElement("li");
+                li.appendChild(avatar);
+                li.appendChild(contact);
+                li.appendChild(date);
+        
+                let contactRow = document.createElement("div");
+                contactRow.classList.add("contact-row");
+                contactRow.appendChild(id);
+                contactRow.appendChild(li);
+        
+                if(obj.active) {
+                    contactRow.classList.add("active");
+                    setActiveDataModel(contactRow);
+                    renderMassagingView();
+                }
+                
+                let ul = document.querySelector("ul");
+                ul.appendChild(contactRow);
+            });
         }
-    
-        /*
-        
-        
-        <div class="contact-row">
-            <li>
-                <img src="product.jpeg" alt="">
-                <div class="contact">
-                    <div class="name">xog Woofsonr</div>
-                    <div class="msg">I have forgotten how i feel</div>
-                </div>
-                <span class="date">12:25 AM</span>
-            </li>
-        </div>
-    
-        */
+
+        function getTime12(date) {
+            return new Date(date).toLocaleString('en-US', {
+                hour: 'numeric', 
+                minute: 'numeric', 
+                hour12: true, 
+            });
+        }
+
+        function setActiveDataModel(contactRow) {
+            let activeChatId = contactRow.querySelector(".id").innerHTML;
+            activeDataModel = chatsMap.get(activeChatId);
+        }
+
+        function renderMassagingView() {
+            let header = document.querySelector(".massaging .header");
+
+            let avatar = document.createElement("img");
+            avatar.classList.add("avatar");
+            avatar.src = activeDataModel.contact.avatar;
+            header.appendChild(avatar);
+
+            let name = document.createElement("div");
+            name.classList.add("header-name");
+            name.innerHTML = activeDataModel.contact.name;
+            header.appendChild(name);
+
+            let msgDate = null;
+
+            activeDataModel.messages.forEach(message => createMessage(message));
+
+            messagingFooterCallbacks();
+        }
+
+        function createMessage(message) {
+            let body = document.querySelector(".massaging .body");
+
+            let msgDate = new Date(message.date);
+            let time =   msgDate.toLocaleString('en-GB', {
+                weekday: "short", 
+                hour: 'numeric', 
+                minute: 'numeric', 
+                hour12: true, 
+                year: 'numeric', 
+                month: 'numeric', 
+                day: 'numeric' 
+            }).split(",");
+
+            if(isDifferentDay(msgDate, body)) {
+                body.appendChild(createDaySeparator(time));
+            }
+
+            let msgTime = document.createElement("span");
+            msgTime.classList.add("message-time");
+            msgTime.innerHTML = time[2];
+
+            let msg = document.createElement("div");
+            msg.classList.add("message");
+            msg.appendChild(msgTime);
+
+            message.senderId === myId ? msg.classList.add("sent"): msg.classList.add("received");
+            
+            msg.appendChild(document.createTextNode(message.text));
+            msg.appendChild(msgTime);
+
+            body.appendChild(msg);
+        }
+
+        function createDaySeparator(time) {
+            let daySeparator = document.createElement("div");
+            daySeparator.classList.add("day-separator");
+            daySeparator.innerHTML = time[0] + ', ' + time[1];
+            return daySeparator;
+        }
+
+        function isDifferentDay(msgDate, body) {
+            let separators = body.querySelectorAll(".day-separator");
+            if(separators.length > 0) {
+                let lastSeparatorDateVal = separators[separators.length - 1].innerHTML;
+                let lastSeparatorDateArr = lastSeparatorDateVal.split(",")[1].split("/");
+                let lastSeparatorDate = new Date(lastSeparatorDateArr[1] + "/" + lastSeparatorDateArr[0] + "/" + lastSeparatorDateArr[2]);
+                return msgDate.getDay() != lastSeparatorDate.getDay();
+            } else {
+                return true;
+            }
+        }
+
+        function filterContactsRows(contactRow) {
+            let name = contactRow.querySelector(".contact .name");
+            let msg = contactRow.querySelector(".contact .msg");
+            let nameVal = name.innerHTML.toLowerCase();
+            let msgVal = msg.innerHTML.toLowerCase();
+            let searchVal = search.value.toLowerCase();
+            let isSearchEmpty = search.value.lenght == 0;
+            const spanStart = "<span class=\"matched\">";
+            const spanEnd = "</span>";
+
+            if(nameVal.includes("span")) {
+                nameVal = nameVal.replaceAll(spanStart, "").replaceAll(spanEnd, "");
+            }
+
+            if(isSearchEmpty || nameVal.includes(searchVal)) {
+                contactRow.classList.remove("hidden");
+                name.innerHTML = nameVal.replace(
+                    searchVal, spanStart + searchVal + spanEnd
+                );
+            } else {
+                contactRow.classList.add("hidden");
+            }
+        };
+
+        function contactRowCLickCallback() {
+            if(active = document.querySelector(".contact-row.active")) {
+                active.classList.remove("active")
+            }
+            this.classList.add("active");
+
+            setActiveDataModel(this);
+            clearMassagingView();
+            renderMassagingView();
+        }
+
+        function clearMassagingView() {
+            clearHeader();
+            clearMessages();
+        }
+
+        function clearHeader() {
+            let header = document.querySelector(".massaging .header");
+            while (header.firstChild) {
+                header.removeChild(header.lastChild);
+            }
+        }
+
+        function clearMessages() {
+            let messages = document.querySelector(".massaging .body");
+            while (messages.firstChild) {
+                messages.removeChild(messages.lastChild);
+            }
+        }
+
+        function messagingFooterCallbacks() {
+            let footer = document.querySelector(".massaging .footer");
+            let msgField = footer.querySelector(".chat-txt");
+            
+            let paperclip = footer.querySelector(".paperclip");
+            let input = footer.querySelector(".paperclip input");
+            paperclip.onclick = () => input.click();
+
+            let emojiButton = footer.querySelector(".emoji-btn");
+            emojiButton.onclick = () => { 
+                console.log("emoji btn clicked");
+            };
+
+            let chatMsgForm = footer.querySelector(".chat-msg-form");
+            chatMsgForm.onsubmit = (e) => {
+                e.preventDefault();
+                updateActiveModel(msgField);
+                createMessage(activeDataModel.messages[activeDataModel.messages.length - 1])
+            };
+
+            let sendMsgButton = footer.querySelector(".send-msg-btn");
+            sendMsgButton.onclick = () => updateActiveModel(msgField);
+
+            function updateActiveModel(msgField) {
+                if(msgField.value) {
+                    let newMsg = {
+                        text: msgField.value,
+                        senderId: myId,
+                        date: Date.now()
+                    }
+                    activeDataModel.messages.push(newMsg);
+                    
+                    msgField.value = "";
+                }
+            }
+        }
     </script>
 </body>
 </html>

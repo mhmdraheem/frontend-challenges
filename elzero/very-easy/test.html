@@ -12,49 +12,24 @@
             box-sizing: border-box;
         }
 
-        div:first-of-type {
-            width: 200px;
-            background-color: yellow;
+        .out {
             display: flex;
-            align-items: stretch;
-            /* flex-direction: column; */
-        }
-
-        div div:first-of-type {
-            width: 60px;
-            height: 150px;
-            background-color: red;
-        }
-
-        div div:last-of-type {
-            background-color: aliceblue;
-            display: flex;
-            flex-direction: column;
-        }
-
-        div div div:first-of-type {
-            width: 60px;
-            height: 50px;
-            /* flex-grow: 1; */
-            background-color: black;
-        }
-
-        div div div:last-of-type {
-            width: 60px;
-            /* height: 30px; */
-            height: 100%;
-            /* flex-grow: 1; */
+            flex-direction: row;
+            width: 400px;
+            height: 400px;
             background-color: blue;
+        }
+
+        .in {
+            width: 200px;
+            height: 200px;
+            background-color: red;
         }
     </style>
 </head>
 <body>
-    <div>
-        <div></div>
-        <div>
-            <div></div>
-            <div></div>
-        </div>
+    <div class="out">
+        <div class="in"></div>
     </div>
 </body>
 </html>

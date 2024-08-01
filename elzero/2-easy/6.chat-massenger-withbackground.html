@@ -7,11 +7,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <script async src="https://kit.fontawesome.com/9b220e24a6.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="normalize.css">
-    <link rel="stylesheet" href="responsive.css">
+    <script src="https://kit.fontawesome.com/9b220e24a6.js" crossorigin="anonymous"></script>
+    <script src="../sources/moment.js"></script>
+    <link rel="stylesheet" href="../sources/normalize.css">
+    <link rel="stylesheet" href="../sources/responsive.css">
 </head>
 <style>
+
+    :root {
+        scroll-behavior: smooth;
+    }
+    
     * {
         font-family: "Roboto", sans-serif;
         font-weight: 100;
@@ -175,8 +181,6 @@
 
     .massaging {
         flex-grow: 1;
-        overflow-y: scroll;
-        scrollbar-width: thin;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -208,6 +212,8 @@
 
     .massaging .body {
         padding: 20px;
+        overflow-y: scroll;
+        scrollbar-width: thin;
     }
 
     .massaging .body {
@@ -369,13 +375,19 @@
     </div>
     <script>
         const myId = "1001";
+        let activeChatId = "";
         let activeDataModel = {};
         let chatsMap = new Map();
         
-        loadJsonDocument("./chats.json").then(json => {
+        loadJsonDocument("./chats.json")
+        .then(json => {
             chatsMap = new Map(Object.entries(json));
+            return chatsMap;
+        })
+        .then(chatsMap => {
             renderContactsMenu(chatsMap); 
-        }).then(() => {
+        })
+        .then(() => {
             let contactRows = document.querySelectorAll(".contacts-menu .contact-row");
             let searchField = document.querySelector(".contacts-menu .header input");
 
@@ -385,12 +397,20 @@
             
             contactRows.forEach(contactRow => contactRow.onclick = contactRowCLickCallback);
         });
-            
+        
         async function loadJsonDocument(filename) {
             let file = await fetch(filename);
             return file.json();
         }
         
+        function persistToLocalStorageFirstTimeOnly(chatsMap) {
+            let chats = localStorage.getItem("chats");
+            if(!chats) {
+                let myObj = Object.fromEntries(chatsMap);
+                localStorage.setItem("chats", JSON.stringify(myObj));
+            }
+        }
+
         function renderContactsMenu(chatsMap) {
             chatsMap.forEach((obj, key) => {
 
@@ -415,7 +435,7 @@
         
                 let avatar = document.createElement("img");
                 avatar.classList.add("avatar");
-                avatar.src = obj.contact.avatar;
+                avatar.src = "../img/" + obj.contact.avatar;
         
                 let date = document.createElement("span");
                 date.classList.add("date");
@@ -443,15 +463,11 @@
         }
 
         function getTime12(date) {
-            return new Date(date).toLocaleString('en-US', {
-                hour: 'numeric', 
-                minute: 'numeric', 
-                hour12: true, 
-            });
+            return moment(date).format("hh:mm a");
         }
 
         function setActiveDataModel(contactRow) {
-            let activeChatId = contactRow.querySelector(".id").innerHTML;
+            activeChatId = contactRow.querySelector(".id").innerHTML;
             activeDataModel = chatsMap.get(activeChatId);
         }
 
@@ -460,7 +476,7 @@
 
             let avatar = document.createElement("img");
             avatar.classList.add("avatar");
-            avatar.src = activeDataModel.contact.avatar;
+            avatar.src = "../img/" + activeDataModel.contact.avatar;
             header.appendChild(avatar);
 
             let name = document.createElement("div");
@@ -470,32 +486,24 @@
 
             let msgDate = null;
 
-            activeDataModel.messages.forEach(message => createMessage(message));
+            activeDataModel.messages.forEach(message => addMessageToView(message));
 
             messagingFooterCallbacks();
         }
 
-        function createMessage(message) {
+        function addMessageToView(message) {
             let body = document.querySelector(".massaging .body");
 
-            let msgDate = new Date(message.date);
-            let time =   msgDate.toLocaleString('en-GB', {
-                weekday: "short", 
-                hour: 'numeric', 
-                minute: 'numeric', 
-                hour12: true, 
-                year: 'numeric', 
-                month: 'numeric', 
-                day: 'numeric' 
-            }).split(",");
-
+            let msgDate = moment(message.date);
+            
             if(isDifferentDay(msgDate, body)) {
-                body.appendChild(createDaySeparator(time));
+                let daySeparator = createDaySeparator(msgDate);
+                body.appendChild(daySeparator);
             }
 
             let msgTime = document.createElement("span");
             msgTime.classList.add("message-time");
-            msgTime.innerHTML = time[2];
+            msgTime.innerHTML = msgDate.format("hh:mm a");
 
             let msg = document.createElement("div");
             msg.classList.add("message");
@@ -507,12 +515,13 @@
             msg.appendChild(msgTime);
 
             body.appendChild(msg);
+            body.scrollTop = body.scrollHeight
         }
 
-        function createDaySeparator(time) {
+        function createDaySeparator(msgDate) {
             let daySeparator = document.createElement("div");
             daySeparator.classList.add("day-separator");
-            daySeparator.innerHTML = time[0] + ', ' + time[1];
+            daySeparator.innerHTML = msgDate.format("ddd, D/M/YYYY");
             return daySeparator;
         }
 
@@ -520,9 +529,8 @@
             let separators = body.querySelectorAll(".day-separator");
             if(separators.length > 0) {
                 let lastSeparatorDateVal = separators[separators.length - 1].innerHTML;
-                let lastSeparatorDateArr = lastSeparatorDateVal.split(",")[1].split("/");
-                let lastSeparatorDate = new Date(lastSeparatorDateArr[1] + "/" + lastSeparatorDateArr[0] + "/" + lastSeparatorDateArr[2]);
-                return msgDate.getDay() != lastSeparatorDate.getDay();
+                let lastSeparatorDate = moment(lastSeparatorDateVal, "DDD, DD/MM/YYYY");
+                return msgDate.get('date') != lastSeparatorDate.get('date');
             } else {
                 return true;
             }
@@ -598,24 +606,26 @@
             let chatMsgForm = footer.querySelector(".chat-msg-form");
             chatMsgForm.onsubmit = (e) => {
                 e.preventDefault();
-                updateActiveModel(msgField);
-                createMessage(activeDataModel.messages[activeDataModel.messages.length - 1])
+                addMessage(msgField);
             };
 
             let sendMsgButton = footer.querySelector(".send-msg-btn");
-            sendMsgButton.onclick = () => updateActiveModel(msgField);
+            sendMsgButton.onclick = () => addMessage(msgField);
+        }
 
-            function updateActiveModel(msgField) {
-                if(msgField.value) {
-                    let newMsg = {
-                        text: msgField.value,
-                        senderId: myId,
-                        date: Date.now()
-                    }
-                    activeDataModel.messages.push(newMsg);
-                    
-                    msgField.value = "";
+        function addMessage(msgField) {
+            if(msgField.value) {
+                let msgTxt = msgField.value;
+                msgField.value = "";
+
+                let newMsg = {
+                    text: msgTxt,
+                    senderId: myId,
+                    date: moment()
                 }
+                
+                activeDataModel.messages.push(newMsg);
+                addMessageToView(activeDataModel.messages[activeDataModel.messages.length - 1])
             }
         }
     </script>

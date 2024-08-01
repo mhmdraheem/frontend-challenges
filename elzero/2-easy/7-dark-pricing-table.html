@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Pricing Table</title>
+    <link rel="stylesheet" href="../sources/normalize.css">
+    <link rel="stylesheet" href="../sources/responsive.css">
+    <style>
+        * {
+            font-family: "Roboto", sans-serif;
+            font-weight: 100;
+            font-style: normal;
+            --black-color: #242424;
+            --blue-color: #03A9F4;
+            --grey-color: #2A2A2A;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .pricing-plans {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .plan {
+            flex-basis: 300px;
+            background-color: var(--black-color);
+            text-align: center;
+        }
+
+        .plan:not(:last-of-type) {
+            border-right: 1px solid #3f3d3d;
+        }
+        
+        .plan .header {
+            padding: 40px 20px 20px;
+            font-weight: 600;
+            color: white;
+            font-size: 35px;
+        }
+
+        .plan .header .plan-name {
+            margin-bottom: 5px;
+        }
+
+        .plan .header .plan-price .period {
+            font-size: 15px;
+        }
+
+        .plan .content {
+            font-size: 13px;
+            color: grey;
+        }
+
+        .plan .content .feature {
+            padding: 20px 10px;
+            background-color: var(--grey-color);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .plan .content .feature:last-of-type {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .plan .footer {
+            padding: 40px 20px;
+        }
+
+        .plan .footer .order-btn {
+            color: white;
+            margin: 0 auto;
+            padding: 10px 40px;
+            width: fit-content;
+            border: 1px solid #3f3d3d;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .plan .footer .order-btn:hover {
+            color: #3f3d3d;
+            background-color: white;
+        }
+
+        .plan.favourite {
+            position: relative;
+            z-index: 999;
+            transform: scale(1.1);
+        }
+
+        .plan.favourite,
+        .plan.favourite .content,
+        .plan.favourite .content .feature,
+        .plan.favourite .footer .order-btn {
+            background-color: var(--blue-color);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* .plan.favourite .header, */
+        .plan.favourite .content .feature span
+        /* .plan.favourite .footer  */
+        {
+            /* transform: scale(0.9); */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="pricing-plans">
+            <div class="plan">
+                <div class="header">
+                    <div class="plan-name">Basic</div>
+                    <div class="plan-price"><sup class="price-unit">$</sup>9.99<span class="period">/ mo</span></div>
+                </div>
+                <ul class="content">
+                    <li class="feature">1 GB Bandwidth</li>
+                    <li class="feature">256 MB Memory</li>
+                    <li class="feature">Full Support</li>
+                    <li class="feature">Free Domain</li>
+                </ul>
+                <div class="footer">
+                    <div class="order-btn">Order Now!</div>
+                </div>
+            </div>
+            <div class="plan">
+                <div class="header">
+                    <div class="plan-name">Basic</div>
+                    <div class="plan-price"><sup class="price-unit">$</sup>9.99<span class="period">/ mo</span></div>
+                </div>
+                <ul class="content">
+                    <li class="feature">1 GB Bandwidth</li>
+                    <li class="feature">256 MB Memory</li>
+                    <li class="feature">Full Support</li>
+                    <li class="feature">Free Domain</li>
+                </ul>
+                <div class="footer">
+                    <div class="order-btn">Order Now!</div>
+                </div>
+            </div>
+            <div class="plan favourite">
+                <div class="header">
+                    <div class="plan-name">Basic</div>
+                    <div class="plan-price"><sup class="price-unit">$</sup>9.99<span class="period">/ mo</span></div>
+                </div>
+                <ul class="content">
+                    <li class="feature">1 GB Bandwidth</li>
+                    <li class="feature">256 MB Memory</li>
+                    <li class="feature">Full Support</li>
+                    <li class="feature">Free Domain</li>
+                </ul>
+                <div class="footer">
+                    <div class="order-btn">Order Now!</div>
+                </div>
+            </div>
+            <div class="plan">
+                <div class="header">
+                    <div class="plan-name">Basic</div>
+                    <div class="plan-price"><sup class="price-unit">$</sup>9.99<span class="period">/ mo</span></div>
+                </div>
+                <ul class="content">
+                    <li class="feature">1 GB Bandwidth</li>
+                    <li class="feature">256 MB Memory</li>
+                    <li class="feature">Full Support</li>
+                    <li class="feature">Free Domain</li>
+                </ul>
+                <div class="footer">
+                    <div class="order-btn">Order Now!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

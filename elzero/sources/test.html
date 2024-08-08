@@ -14,11 +14,16 @@
 
         .emoji-picker {
             border: 1px solid #dddddd;
+            display: none;
 
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+        }
+
+        .emoji-picker.visible {
+            display: block;
         }
 
         .emoji-picker input {
@@ -140,17 +145,16 @@
                 <span class="emoji">&#x1F49E</span>
                 <span class="emoji">&#x1F49F</span>
             </div>
-        </div>
+        </div>        
     </div>
+    <button>Click me</button>
     <script>
         let emojiPicker = document.querySelector(".emoji-picker");
         emojiPicker.querySelectorAll(".tab").forEach(tab => {
             tab.onclick = (e) => {
                 if(emojiPicker.querySelector(".tab.active")) {
-                    console.log("active tab")
                     emojiPicker.querySelector(".tab.active").classList.remove("active");
                 }
-                console.log(tab)
                 tab.classList.add("active");
 
                 let tabContentClass = tab.getAttribute("collection-name");
@@ -165,6 +169,16 @@
                 tabContent.classList.toggle("visible");
             }
         });
+
+        document.querySelectorAll(".tab-body .emoji").forEach(emoji => {
+            emoji.onclick = () => {
+                console.log("emoji clicked", emoji.innerText);
+            }
+        });
+
+        document.querySelector("button").onclick = () => {
+            emojiPicker.classList.toggle("visible");
+        }
     </script>
 </body>
 </html>

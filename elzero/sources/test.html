@@ -12,24 +12,159 @@
             box-sizing: border-box;
         }
 
-        .out {
-            display: flex;
-            flex-direction: row;
-            width: 400px;
-            height: 400px;
-            background-color: blue;
+        .emoji-picker {
+            border: 1px solid #dddddd;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
-        .in {
-            width: 200px;
-            height: 200px;
-            background-color: red;
+        .emoji-picker input {
+            padding: 8px;
+            margin: 10px;
+            border-radius: 5px;
+            outline: none;
+            border: 1px solid #dddddd;
+            font-size: 18px;
+        }
+
+        .emoji-picker .tabs {
+            border-bottom: 1px solid #dddddd;
+            display: flex;
+            align-items: center;
+        }
+
+        .emoji {
+            width: 40px;
+            height: 40px;
+            font-size: 22px;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .emoji-picker .tab.active {
+            border-bottom: 2px solid #355AC2;
+        }
+
+        .emoji-picker .tab-body {
+            height: 240px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+        }
+
+        .emoji-picker .collection {
+            display: none;
+        }
+
+        .emoji-picker .collection.visible {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
         }
     </style>
 </head>
 <body>
-    <div class="out">
-        <div class="in"></div>
+    <div class="emoji-picker">
+        <input type="text" name="emoji-search" id="emoji-search" placeholder="Search">
+        <div class="tabs">
+            <span class="tab active emoji" collection-name="smiles">&#x1F600</span>
+            <span class="tab emoji" collection-name="hearts">&#x1F493</span>
+        </div>
+        <div class="tab-body">
+            <div class="collection smiles visible">
+                <span class="emoji">&#x1F600</span>
+                <span class="emoji">&#x1F601</span>
+                <span class="emoji">&#x1F602</span>
+                <span class="emoji">&#x1F603</span>
+                <span class="emoji">&#x1F604</span>
+                <span class="emoji">&#x1F605</span>
+                <span class="emoji">&#x1F606</span>
+                <span class="emoji">&#x1F607</span>
+                <span class="emoji">&#x1F608</span>
+                <span class="emoji">&#x1F609</span>
+                <span class="emoji">&#x1F60A</span>
+                <span class="emoji">&#x1F60B</span>
+                <span class="emoji">&#x1F60C</span>
+                <span class="emoji">&#x1F60D</span>
+                <span class="emoji">&#x1F60E</span>
+                <span class="emoji">&#x1F60F</span>
+                <span class="emoji">&#x1F610</span>
+                <span class="emoji">&#x1F611</span>
+                <span class="emoji">&#x1F612</span>
+                <span class="emoji">&#x1F613</span>
+                <span class="emoji">&#x1F614</span>
+                <span class="emoji">&#x1F615</span>
+                <span class="emoji">&#x1F616</span>
+                <span class="emoji">&#x1F617</span>
+                <span class="emoji">&#x1F618</span>
+                <span class="emoji">&#x1F619</span>
+                <span class="emoji">&#x1F61A</span>
+                <span class="emoji">&#x1F61B</span>
+                <span class="emoji">&#x1F61C</span>
+                <span class="emoji">&#x1F61D</span>
+                <span class="emoji">&#x1F61E</span>
+                <span class="emoji">&#x1F61F</span>
+                <span class="emoji">&#x1F620</span>
+                <span class="emoji">&#x1F621</span>
+                <span class="emoji">&#x1F622</span>
+                <span class="emoji">&#x1F623</span>
+                <span class="emoji">&#x1F624</span>
+                <span class="emoji">&#x1F625</span>
+                <span class="emoji">&#x1F626</span>
+                <span class="emoji">&#x1F627</span>
+                <span class="emoji">&#x1F628</span>
+                <span class="emoji">&#x1F629</span>
+                <span class="emoji">&#x1F62A</span>
+                <span class="emoji">&#x1F62B</span>
+                <span class="emoji">&#x1F62C</span>
+                <span class="emoji">&#x1F62D</span>
+                <span class="emoji">&#x1F62E</span>
+                <span class="emoji">&#x1F62F</span>
+            </div>
+            <div class="collection hearts">
+                <span class="emoji">&#x1F493</span>
+                <span class="emoji">&#x1F494</span>
+                <span class="emoji">&#x1F495</span>
+                <span class="emoji">&#x1F496</span>
+                <span class="emoji">&#x1F497</span>
+                <span class="emoji">&#x1F498</span>
+                <span class="emoji">&#x1F499</span>
+                <span class="emoji">&#x1F49A</span>
+                <span class="emoji">&#x1F49B</span>
+                <span class="emoji">&#x1F49C</span>
+                <span class="emoji">&#x1F49D</span>
+                <span class="emoji">&#x1F49E</span>
+                <span class="emoji">&#x1F49F</span>
+            </div>
+        </div>
     </div>
+    <script>
+        let emojiPicker = document.querySelector(".emoji-picker");
+        emojiPicker.querySelectorAll(".tab").forEach(tab => {
+            tab.onclick = (e) => {
+                if(emojiPicker.querySelector(".tab.active")) {
+                    console.log("active tab")
+                    emojiPicker.querySelector(".tab.active").classList.remove("active");
+                }
+                console.log(tab)
+                tab.classList.add("active");
+
+                let tabContentClass = tab.getAttribute("collection-name");
+                let tabContent = emojiPicker.querySelector("." + tabContentClass);
+                let tabBody = document.querySelector(".tab-body");
+
+                if(tabBody.querySelector(".visible")) {
+                    tabBody.querySelector(".visible").classList.toggle("visible");
+                }
+
+                tabBody.appendChild(tabContent);
+                tabContent.classList.toggle("visible");
+            }
+        });
+    </script>
 </body>
 </html>

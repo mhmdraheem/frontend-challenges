@@ -293,13 +293,16 @@
         font-weight: inherit;
     }
 
-    .massaging .footer .massaging-container {
+    .massaging .footer .massaging-container form {
         position: relative;
+        height: 40px;
+        display: flex;
+        align-items: center;
     }
 
-    .massaging .footer .massaging-container input {
+    .massaging .footer .massaging-container > input {
         width: 100%;
-        height: 40px;
+        height: 100%;
         border-radius: 5px;
         background-color: #ECEFF1;
         border:none;
@@ -312,39 +315,94 @@
     .massaging .footer .massaging-container i {
         position: absolute;
         width: 16px;
-        height: 16px;
-        top: calc(50% - 8px);
+        height: 100%;
         cursor: pointer;
         color: grey;
+        display: flex;
+        align-items: center;
     }
 
-    .massaging .footer .massaging-container i:nth-of-type(1) {
-        left: 30px;
-        transform: rotate(-45deg);
+    .massaging .footer .massaging-container .paperclip {
+        left: 10px;
     }
 
-    .massaging .footer .massaging-container i:nth-of-type(1):hover {
+    .massaging .footer .massaging-container .paperclip:hover {
         color: black;
     }
 
-    .massaging .footer .massaging-container i:nth-of-type(2) {
-        right: 55px;
+    .massaging .footer .massaging-container .emoji-btn {
+        right: 35px;
+        position: relative;
     }
 
-    .massaging .footer .massaging-container i:nth-of-type(2):hover {
+    .massaging .footer .massaging-container .emoji-btn:hover {
         color: goldenrod;
     }
 
-    .massaging .footer .massaging-container i:nth-of-type(3) {
-        right: 30px;
+    .massaging .footer .massaging-container .send-msg-btn {
+        right: 10px;
     }
 
-    .massaging .footer .massaging-container i:nth-of-type(3):hover {
+    .massaging .footer .massaging-container .send-msg-btn:hover {
         color: var(--blue-color);
     }
 
     .massaging .footer input.attach-file {
         display: none;
+    }
+
+    .emoji-picker {
+        border: 1px solid #dddddd;
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .emoji-picker input.search {
+        padding: 8px;
+        margin: 10px;
+        border-radius: 5px;
+        outline: none;
+        border: 1px solid #dddddd;
+        font-size: 18px;
+    }
+
+    .emoji-picker .tabs {
+        border-bottom: 1px solid #dddddd;
+        display: flex;
+        align-items: center;
+    }
+
+    .emoji {
+        width: 40px;
+        height: 40px;
+        font-size: 22px;
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .emoji-picker .tab.active {
+        border-bottom: 2px solid #355AC2;
+    }
+
+    .emoji-picker .tab-body {
+        height: 240px;
+        overflow-y: auto;
+        scrollbar-width: thin;
+    }
+
+    .emoji-picker .collection {
+        display: none;
+    }
+
+    .emoji-picker .collection.visible {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
     }
 </style>
 <body>
@@ -363,27 +421,95 @@
                 <div class="massaging-container">
                     <form class="chat-msg-form">
                         <input type="text" class="chat-txt">
+                        <i class="fa-solid fa-paperclip paperclip" tool>
+                            <input class="attach-file" type="file" name="attach-file" id="attach-file">
+                        </i>
+                        <i class="fa-regular fa-face-smile emoji-btn"></i>
+                        <div class="emoji-picker">
+                            <input type="text" class="search" name="emoji-search" id="emoji-search" placeholder="Search">
+                            <div class="tabs">
+                                <span class="tab active emoji" collection-name="smiles">&#x1F600</span>
+                                <span class="tab emoji" collection-name="hearts">&#x1F493</span>
+                            </div>
+                            <div class="tab-body">
+                                <div class="collection smiles visible">
+                                    <span class="emoji">&#x1F600</span>
+                                    <span class="emoji">&#x1F601</span>
+                                    <span class="emoji">&#x1F602</span>
+                                    <span class="emoji">&#x1F603</span>
+                                    <span class="emoji">&#x1F604</span>
+                                    <span class="emoji">&#x1F605</span>
+                                    <span class="emoji">&#x1F606</span>
+                                    <span class="emoji">&#x1F607</span>
+                                    <span class="emoji">&#x1F608</span>
+                                    <span class="emoji">&#x1F609</span>
+                                    <span class="emoji">&#x1F60A</span>
+                                    <span class="emoji">&#x1F60B</span>
+                                    <span class="emoji">&#x1F60C</span>
+                                    <span class="emoji">&#x1F60D</span>
+                                    <span class="emoji">&#x1F60E</span>
+                                    <span class="emoji">&#x1F60F</span>
+                                    <span class="emoji">&#x1F610</span>
+                                    <span class="emoji">&#x1F611</span>
+                                    <span class="emoji">&#x1F612</span>
+                                    <span class="emoji">&#x1F613</span>
+                                    <span class="emoji">&#x1F614</span>
+                                    <span class="emoji">&#x1F615</span>
+                                    <span class="emoji">&#x1F616</span>
+                                    <span class="emoji">&#x1F617</span>
+                                    <span class="emoji">&#x1F618</span>
+                                    <span class="emoji">&#x1F619</span>
+                                    <span class="emoji">&#x1F61A</span>
+                                    <span class="emoji">&#x1F61B</span>
+                                    <span class="emoji">&#x1F61C</span>
+                                    <span class="emoji">&#x1F61D</span>
+                                    <span class="emoji">&#x1F61E</span>
+                                    <span class="emoji">&#x1F61F</span>
+                                    <span class="emoji">&#x1F620</span>
+                                    <span class="emoji">&#x1F621</span>
+                                    <span class="emoji">&#x1F622</span>
+                                    <span class="emoji">&#x1F623</span>
+                                    <span class="emoji">&#x1F624</span>
+                                    <span class="emoji">&#x1F625</span>
+                                    <span class="emoji">&#x1F626</span>
+                                    <span class="emoji">&#x1F627</span>
+                                    <span class="emoji">&#x1F628</span>
+                                    <span class="emoji">&#x1F629</span>
+                                    <span class="emoji">&#x1F62A</span>
+                                    <span class="emoji">&#x1F62B</span>
+                                    <span class="emoji">&#x1F62C</span>
+                                    <span class="emoji">&#x1F62D</span>
+                                    <span class="emoji">&#x1F62E</span>
+                                    <span class="emoji">&#x1F62F</span>
+                                </div>
+                                <div class="collection hearts">
+                                    <span class="emoji">&#x1F493</span>
+                                    <span class="emoji">&#x1F494</span>
+                                    <span class="emoji">&#x1F495</span>
+                                    <span class="emoji">&#x1F496</span>
+                                    <span class="emoji">&#x1F497</span>
+                                    <span class="emoji">&#x1F498</span>
+                                    <span class="emoji">&#x1F499</span>
+                                    <span class="emoji">&#x1F49A</span>
+                                    <span class="emoji">&#x1F49B</span>
+                                    <span class="emoji">&#x1F49C</span>
+                                    <span class="emoji">&#x1F49D</span>
+                                    <span class="emoji">&#x1F49E</span>
+                                    <span class="emoji">&#x1F49F</span>
+                                </div>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-paper-plane send-msg-btn"></i>
                     </form>
-                    <i class="fa-solid fa-paperclip paperclip" tool>
-                        <input class="attach-file" type="file" name="attach-file" id="attach-file">
-                    </i>
-                    <i class="fa-regular fa-face-smile emoji-btn"></i>
-                    <i class="fa-solid fa-paper-plane send-msg-btn"></i>
                 </div>
             </div>
         </div>
     </div>
     <script>
         const myId = "1001";
-        let activeChatId = "";
-        let activeDataModel = {};
-        let chatsMap = new Map();
-        
-        loadJsonDocument("./chats.json")
-        .then(json => {
-            chatsMap = new Map(Object.entries(json));
-            return chatsMap;
-        })
+        let chats = {};        
+
+        setDataModel()
         .then(chatsMap => {
             renderContactsMenu(chatsMap); 
         })
@@ -398,21 +524,31 @@
             contactRows.forEach(contactRow => contactRow.onclick = contactRowCLickCallback);
         });
         
+        async function setDataModel() {
+            let json;
+            if(localStorage.getItem("chats")) {
+                json = JSON.parse(localStorage.getItem("chats"));
+            } else {
+                json = await loadJsonDocument("./chats.json");
+                persist(json);
+            }
+            chats = json;
+            return json;
+        }
+
         async function loadJsonDocument(filename) {
             let file = await fetch(filename);
             return file.json();
         }
         
-        function persistToLocalStorageFirstTimeOnly(chatsMap) {
-            let chats = localStorage.getItem("chats");
-            if(!chats) {
-                let myObj = Object.fromEntries(chatsMap);
-                localStorage.setItem("chats", JSON.stringify(myObj));
-            }
+        function persist(json) {
+            localStorage.setItem("chats", JSON.stringify(json));
         }
 
         function renderContactsMenu(chatsMap) {
-            chatsMap.forEach((obj, key) => {
+            Object.entries(chatsMap).forEach((json) => {
+                let key = json[0];
+                let obj = json[1];
 
                 let id = document.createElement("div");
                 id.classList.add("id");
@@ -467,8 +603,7 @@
         }
 
         function setActiveDataModel(contactRow) {
-            activeChatId = contactRow.querySelector(".id").innerHTML;
-            activeDataModel = chatsMap.get(activeChatId);
+            activeDataModel = chats[contactRow.querySelector(".id").innerHTML];
         }
 
         function renderMassagingView() {
@@ -488,7 +623,7 @@
 
             activeDataModel.messages.forEach(message => addMessageToView(message));
 
-            messagingFooterCallbacks();
+            registerFooterCallbacks();
         }
 
         function addMessageToView(message) {
@@ -590,7 +725,7 @@
             }
         }
 
-        function messagingFooterCallbacks() {
+        function registerFooterCallbacks() {
             let footer = document.querySelector(".massaging .footer");
             let msgField = footer.querySelector(".chat-txt");
             
@@ -601,6 +736,7 @@
             let emojiButton = footer.querySelector(".emoji-btn");
             emojiButton.onclick = () => { 
                 console.log("emoji btn clicked");
+                msgField.value = msgField.value + String.fromCodePoint(0x231A);
             };
 
             let chatMsgForm = footer.querySelector(".chat-msg-form");
@@ -615,19 +751,52 @@
 
         function addMessage(msgField) {
             if(msgField.value) {
-                let msgTxt = msgField.value;
-                msgField.value = "";
-
-                let newMsg = {
-                    text: msgTxt,
-                    senderId: myId,
-                    date: moment()
-                }
+                let newMsg = createMsg(msgField.value);
                 
                 activeDataModel.messages.push(newMsg);
-                addMessageToView(activeDataModel.messages[activeDataModel.messages.length - 1])
+                persist(chats);
+
+                addMessageToView(newMsg);
+                clearInputTextField(msgField);
             }
         }
+
+        function createMsg(msgText) {
+            return {
+                text: msgText,
+                senderId: myId,
+                date: moment()
+            }
+        }
+
+        function clearInputTextField(msgField) {
+            msgField.value = "";
+        }
+    </script>
+
+    <script>
+        let emojiPicker = document.querySelector(".emoji-picker");
+        emojiPicker.querySelectorAll(".tab").forEach(tab => {
+            tab.onclick = (e) => {
+                if(emojiPicker.querySelector(".tab.active")) {
+                    console.log("active tab")
+                    emojiPicker.querySelector(".tab.active").classList.remove("active");
+                }
+                console.log(tab)
+                tab.classList.add("active");
+
+                let tabContentClass = tab.getAttribute("collection-name");
+                let tabContent = emojiPicker.querySelector("." + tabContentClass);
+                let tabBody = document.querySelector(".tab-body");
+
+                if(tabBody.querySelector(".visible")) {
+                    tabBody.querySelector(".visible").classList.toggle("visible");
+                }
+
+                tabBody.appendChild(tabContent);
+                tabContent.classList.toggle("visible");
+            }
+        });
     </script>
 </body>
 </html>

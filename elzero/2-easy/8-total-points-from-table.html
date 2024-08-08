@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Total Points from Table</title>
+    <link rel="stylesheet" href="../sources/normalize.css">
+    <link rel="stylesheet" href="../sources/responsive.css">
+    <style>
+        * {
+            font-family: "Roboto", sans-serif;
+            font-weight: 100;
+            font-style: normal;
+        }
+
+        .page {
+            padding: 50px 0;
+            background-color: #EEEEEE;
+        }
+
+        table {
+            margin: 0 auto;
+            width: 250px;
+            margin-bottom: 50px;
+        }
+
+        td {
+            padding: 5px;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="page">
+            <table>
+                <caption>January</caption>
+                <tr>
+                    <td>Mahmoud</td>
+                    <td>50</td>
+                </tr>
+                <tr>
+                    <td>Sayed</td>
+                    <td>150</td>
+                </tr>
+            </table>
+            <table>
+                <caption>February</caption>
+                <tr>
+                    <td>Mahmoud</td>
+                    <td>150</td>
+                </tr>
+                <tr>
+                    <td>Sayed</td>
+                    <td>300</td>
+                </tr>
+            </table>
+            <table>
+                <caption>March</caption>
+                <tr>
+                    <td>Alaa</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>Faheem</td>
+                    <td>100</td>
+                </tr>
+            </table>
+            <table>
+                <caption>Abril</caption>
+                <tr>
+                    <td>Alaa</td>
+                    <td>2000</td>
+                </tr>
+            </table>
+            <hr>
+        </div>
+    </div>
+    <script>
+        let totalPointsTable = document.createElement("table");
+        
+        let totalPointsCaption = document.createElement("caption");
+        totalPointsCaption.innerText = 'Total Points';
+
+        totalPointsTable.appendChild(totalPointsCaption);
+        
+        let pointsMap = new Map();
+        document.querySelectorAll("table").forEach(table => {
+            let rows = table.querySelectorAll("tr");
+            rows.forEach(row => {
+                let name = row.children[0].innerText;
+                let points = row.children[1].innerText;
+                if(pointsMap.get(name)) {
+                    points = +points + +pointsMap.get(name);    
+                } 
+                pointsMap.set(name, points);
+            });
+        });
+
+        sortedMap = new Map([...pointsMap.entries()].sort((arr1, arr2) => {
+            return arr2[1] - arr1[1];
+        }));
+
+        sortedMap.entries().forEach(e => {
+            totalPointsTable.appendChild(createRow(e[0], e[1]));
+        });
+        
+        document.querySelector(".page").appendChild(totalPointsTable);
+
+        function createRow(k, v) {
+            let tr = document.createElement("tr");
+            
+            let td1 = document.createElement("td");
+            td1.innerText = k;
+            
+            let td2 = document.createElement("td");
+            td2.innerText = v;
+
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+
+            return tr;
+        }
+    </script>
+</body>
+</html>

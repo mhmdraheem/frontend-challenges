@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/9b220e24a6.js" crossorigin="anonymous"></script>
     <script src="../sources/moment.js"></script>
-    <script src="./emoji-lib/emoji.js"></script>
+    <script src="../sources/emoji.js"></script>
     <link rel="stylesheet" href="../sources/normalize.css">
     <link rel="stylesheet" href="../sources/responsive.css">
 </head>
@@ -185,7 +185,7 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        min-width: 600px;
+        min-width: 350px;
         height: 100%;
     }
 
@@ -200,6 +200,10 @@
         display: flex;
         justify-content: flex-start;
         gap: 10px;
+    }
+
+    .massaging .header.hidden {
+        display: none;
     }
 
     .massaging .header .header-name {
@@ -284,6 +288,10 @@
         margin-top: auto;
     }
     
+    .massaging .footer.hidden {
+        display: none;
+    }
+
     .massaging .body .message .message-time {
         align-self: flex-end;
         font-size: 10px;
@@ -400,9 +408,9 @@
             <ul></ul>
         </div>
         <div class="massaging">
-            <div class="header"></div>
+            <div class="header hidden"></div>
             <div class="body"></div>
-            <div class="footer">
+            <div class="footer hidden">
                 <form class="chat-msg-form">
                     <div class="emoji-picker-wrapper">
                         <i class="fa-regular fa-circle-xmark emoji-btn-hide"></i>
@@ -425,19 +433,8 @@
         let chats = {};        
 
         setDataModel()
-        .then(chatsMap => {
-            renderContactsMenu(chatsMap); 
-        })
-        .then(() => {
-            let contactRows = document.querySelectorAll(".contacts-menu .contact-row");
-            let searchField = document.querySelector(".contacts-menu .header input");
-
-            searchField.onkeyup = () => {
-                contactRows.forEach(contactRow => filterContactsRows(contactRow));
-            };
-            
-            contactRows.forEach(contactRow => contactRow.onclick = contactRowCLickCallback);
-        });
+        .then(dataModel => renderContactsMenu(dataModel))
+        .then(() => registerFooterCallbacks());
         
         async function setDataModel() {
             let json;
@@ -501,28 +498,25 @@
                 contactRow.classList.add("contact-row");
                 contactRow.appendChild(id);
                 contactRow.appendChild(li);
-        
-                if(obj.active) {
-                    contactRow.classList.add("active");
-                    setActiveDataModel(contactRow);
-                    renderMassagingView();
-                }
-                
+                contactRow.onclick = e => contactRowCLickCallback(e, contactRow);
+
                 let ul = document.querySelector("ul");
                 ul.appendChild(contactRow);
             });
+
+            let contactRows = document.querySelectorAll(".contact-row");
+            document.querySelector(".contacts-menu .header input").onkeyup = () => {
+                contactRows.forEach(contactRow => filterContactsRows(contactRow));
+            };
         }
 
         function getTime12(date) {
             return moment(date).format("hh:mm a");
         }
 
-        function setActiveDataModel(contactRow) {
-            activeDataModel = chats[contactRow.querySelector(".id").innerHTML];
-        }
-
         function renderMassagingView() {
             let header = document.querySelector(".massaging .header");
+            header.classList.remove("hidden");
 
             let avatar = document.createElement("img");
             avatar.classList.add("avatar");
@@ -538,7 +532,8 @@
 
             activeDataModel.messages.forEach(message => addMessageToView(message));
 
-            registerFooterCallbacks();
+            let footer = document.querySelector(".massaging .footer");
+            footer.classList.remove("hidden");
         }
 
         function addMessageToView(message) {
@@ -610,20 +605,25 @@
             }
         };
 
-        function contactRowCLickCallback() {
+        function contactRowCLickCallback(e, contactRow) {
             if(active = document.querySelector(".contact-row.active")) {
                 active.classList.remove("active")
             }
-            this.classList.add("active");
+            contactRow.classList.add("active");
 
-            setActiveDataModel(this);
+            setActiveDataModel(contactRow);
             clearMassagingView();
             renderMassagingView();
+        }
+
+        function setActiveDataModel(contactRow) {
+            activeDataModel = chats[contactRow.querySelector(".id").innerHTML];
         }
 
         function clearMassagingView() {
             clearHeader();
             clearMessages();
+            clearFooter();
         }
 
         function clearHeader() {
@@ -640,6 +640,11 @@
             }
         }
 
+        function clearFooter() {
+            document.querySelector(".massaging .footer .chat-txt").value = '';
+            document.querySelector(".massaging .footer emoji-picker").hide();
+        }
+
         function registerFooterCallbacks() {
             let footer = document.querySelector(".massaging .footer");
             let msgField = footer.querySelector(".chat-txt");
@@ -648,11 +653,26 @@
             let input = footer.querySelector(".paperclip input");
             paperclip.onclick = () => input.click();
 
-            let emojiButton = footer.querySelector(".emoji-btn-show");
-            emojiButton.onclick = () => { 
-                console.log("emoji btn clicked");
-                msgField.value = msgField.value + String.fromCodePoint(0x231A);
+            let emojiPicker = document.querySelector("emoji-picker");
+            let emojiBtnShow = document.querySelector(".emoji-btn-show");
+            let emojiBtnHide = document.querySelector(".emoji-btn-hide");
+            
+            emojiBtnShow.onclick = () => {
+                emojiPicker.show();
+                emojiBtnShow.classList.add("active");
+                emojiBtnHide.classList.add("active");
             };
+        
+            emojiBtnHide.onclick = () => {
+                emojiPicker.hide();
+                emojiBtnShow.classList.remove("active");
+                emojiBtnHide.classList.remove("active");
+            };
+        
+            emojiPicker.addEventListener("emoji-picked", (e) => {
+                msgField.value = msgField.value + e.detail.emojiVal;
+                msgField.focus();
+            });
 
             let chatMsgForm = footer.querySelector(".chat-msg-form");
             chatMsgForm.onsubmit = (e) => {
@@ -687,27 +707,6 @@
         function clearInputTextField(msgField) {
             msgField.value = "";
         }
-    </script>
-    <script>
-        let emojiPicker = document.querySelector("emoji-picker");
-        let emojiBtnShow = document.querySelector(".emoji-btn-show");
-        let emojiBtnHide = document.querySelector(".emoji-btn-hide");
-        
-        emojiBtnShow.onclick = () => {
-            emojiPicker.show();
-            emojiBtnShow.classList.add("active");
-            emojiBtnHide.classList.add("active");
-        };
-    
-        emojiBtnHide.onclick = () => {
-            emojiPicker.hide();
-            emojiBtnShow.classList.remove("active");
-            emojiBtnHide.classList.remove("active");
-        };
-    
-        emojiPicker.addEventListener("emoji-picked", (e) => {
-            console.log(e.detail.emojiVal);
-        });
     </script>
 </body>
 </html>

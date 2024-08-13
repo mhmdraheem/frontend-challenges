@@ -6,179 +6,93 @@
     <title>Test</title>
     <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="responsive.css">
+    <script src="emoji.js"></script>
+    <script src="https://kit.fontawesome.com/9b220e24a6.js" crossorigin="anonymous"></script>
     <style>
-
         * {
             box-sizing: border-box;
         }
 
-        .emoji-picker {
-            border: 1px solid #dddddd;
-            display: none;
-
+        .cont {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            right: 0;
+            bottom: 0;
         }
 
-        .emoji-picker.visible {
-            display: block;
+        emoji-picker {
+            position: absolute;
+            right: 0;
+            bottom: calc(100% + 50px);
         }
 
-        .emoji-picker input {
-            padding: 8px;
-            margin: 10px;
-            border-radius: 5px;
-            outline: none;
-            border: 1px solid #dddddd;
-            font-size: 18px;
-        }
-
-        .emoji-picker .tabs {
-            border-bottom: 1px solid #dddddd;
+        .picker-controls {
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: red;
+            position: relative;
         }
 
-        .emoji {
-            width: 40px;
-            height: 40px;
-            font-size: 22px;
-            padding: 5px;
+        .picker-controls.expand {
+            width: 80px;
+        }
+
+        .picker-controls i {
+            cursor: pointer;
+            width: 35px;
+            height: 35px;
+            transition: 0.3s;
+            font-size: 35px;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
         }
 
-        .emoji-picker .tab.active {
-            border-bottom: 2px solid #355AC2;
+        .picker-controls i.emoji-btn-show.active {
+            color: gold;
         }
 
-        .emoji-picker .tab-body {
-            height: 240px;
-            overflow-y: auto;
-            scrollbar-width: thin;
+        .picker-controls i.emoji-btn-hide {
+            width: 0;
+            font-size: 0;
         }
 
-        .emoji-picker .collection {
-            display: none;
-        }
-
-        .emoji-picker .collection.visible {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
+        .picker-controls i.emoji-btn-hide.active {
+            width: 35px;
+            font-size: 35px;
+            margin-left: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="emoji-picker">
-        <input type="text" name="emoji-search" id="emoji-search" placeholder="Search">
-        <div class="tabs">
-            <span class="tab active emoji" collection-name="smiles">&#x1F600</span>
-            <span class="tab emoji" collection-name="hearts">&#x1F493</span>
+    <div class="cont">
+        <emoji-picker></emoji-picker>
+        <div class="picker-controls">
+            <i class="fa-regular fa-face-smile emoji-btn-show"></i>
+            <i class="fa-regular fa-circle-xmark emoji-btn-hide"></i>
         </div>
-        <div class="tab-body">
-            <div class="collection smiles visible">
-                <span class="emoji">&#x1F600</span>
-                <span class="emoji">&#x1F601</span>
-                <span class="emoji">&#x1F602</span>
-                <span class="emoji">&#x1F603</span>
-                <span class="emoji">&#x1F604</span>
-                <span class="emoji">&#x1F605</span>
-                <span class="emoji">&#x1F606</span>
-                <span class="emoji">&#x1F607</span>
-                <span class="emoji">&#x1F608</span>
-                <span class="emoji">&#x1F609</span>
-                <span class="emoji">&#x1F60A</span>
-                <span class="emoji">&#x1F60B</span>
-                <span class="emoji">&#x1F60C</span>
-                <span class="emoji">&#x1F60D</span>
-                <span class="emoji">&#x1F60E</span>
-                <span class="emoji">&#x1F60F</span>
-                <span class="emoji">&#x1F610</span>
-                <span class="emoji">&#x1F611</span>
-                <span class="emoji">&#x1F612</span>
-                <span class="emoji">&#x1F613</span>
-                <span class="emoji">&#x1F614</span>
-                <span class="emoji">&#x1F615</span>
-                <span class="emoji">&#x1F616</span>
-                <span class="emoji">&#x1F617</span>
-                <span class="emoji">&#x1F618</span>
-                <span class="emoji">&#x1F619</span>
-                <span class="emoji">&#x1F61A</span>
-                <span class="emoji">&#x1F61B</span>
-                <span class="emoji">&#x1F61C</span>
-                <span class="emoji">&#x1F61D</span>
-                <span class="emoji">&#x1F61E</span>
-                <span class="emoji">&#x1F61F</span>
-                <span class="emoji">&#x1F620</span>
-                <span class="emoji">&#x1F621</span>
-                <span class="emoji">&#x1F622</span>
-                <span class="emoji">&#x1F623</span>
-                <span class="emoji">&#x1F624</span>
-                <span class="emoji">&#x1F625</span>
-                <span class="emoji">&#x1F626</span>
-                <span class="emoji">&#x1F627</span>
-                <span class="emoji">&#x1F628</span>
-                <span class="emoji">&#x1F629</span>
-                <span class="emoji">&#x1F62A</span>
-                <span class="emoji">&#x1F62B</span>
-                <span class="emoji">&#x1F62C</span>
-                <span class="emoji">&#x1F62D</span>
-                <span class="emoji">&#x1F62E</span>
-                <span class="emoji">&#x1F62F</span>
-            </div>
-            <div class="collection hearts">
-                <span class="emoji">&#x1F493</span>
-                <span class="emoji">&#x1F494</span>
-                <span class="emoji">&#x1F495</span>
-                <span class="emoji">&#x1F496</span>
-                <span class="emoji">&#x1F497</span>
-                <span class="emoji">&#x1F498</span>
-                <span class="emoji">&#x1F499</span>
-                <span class="emoji">&#x1F49A</span>
-                <span class="emoji">&#x1F49B</span>
-                <span class="emoji">&#x1F49C</span>
-                <span class="emoji">&#x1F49D</span>
-                <span class="emoji">&#x1F49E</span>
-                <span class="emoji">&#x1F49F</span>
-            </div>
-        </div>        
     </div>
-    <button>Click me</button>
-    <script>
-        let emojiPicker = document.querySelector(".emoji-picker");
-        emojiPicker.querySelectorAll(".tab").forEach(tab => {
-            tab.onclick = (e) => {
-                if(emojiPicker.querySelector(".tab.active")) {
-                    emojiPicker.querySelector(".tab.active").classList.remove("active");
-                }
-                tab.classList.add("active");
-
-                let tabContentClass = tab.getAttribute("collection-name");
-                let tabContent = emojiPicker.querySelector("." + tabContentClass);
-                let tabBody = document.querySelector(".tab-body");
-
-                if(tabBody.querySelector(".visible")) {
-                    tabBody.querySelector(".visible").classList.toggle("visible");
-                }
-
-                tabBody.appendChild(tabContent);
-                tabContent.classList.toggle("visible");
-            }
-        });
-
-        document.querySelectorAll(".tab-body .emoji").forEach(emoji => {
-            emoji.onclick = () => {
-                console.log("emoji clicked", emoji.innerText);
-            }
-        });
-
-        document.querySelector("button").onclick = () => {
-            emojiPicker.classList.toggle("visible");
-        }
-    </script>
 </body>
+<script>
+    let emojiPicker = document.querySelector("emoji-picker");
+    let emojiBtnShow = document.querySelector(".emoji-btn-show");
+    let emojiBtnHide = document.querySelector(".emoji-btn-hide");
+    
+    emojiBtnShow.onclick = () => {
+        emojiPicker.show();
+        emojiBtnShow.classList.add("active");
+        emojiBtnHide.classList.add("active");
+    };
+
+    emojiBtnHide.onclick = () => {
+        emojiPicker.hide();
+        emojiBtnShow.classList.remove("active");
+        emojiBtnHide.classList.remove("active");
+    };
+
+    emojiPicker.addEventListener("emoji-picked", (e) => {
+        console.log(e.detail.emojiVal);
+    });
+</script>
 </html>

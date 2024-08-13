@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hover Overlay</title>
+    <link rel="stylesheet" href="../sources/normalize.css">
+    <link rel="stylesheet" href="../sources/responsive.css">
+    <style>
+        figure {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            transition: top 0.5s;
+        }
+
+        figure:hover {
+            top: calc(50% - 10px);
+        }
+
+        figure:hover .img-container::before {
+            width: 100%;
+        }
+
+        figure:hover figcaption {
+            width: 100%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .img-container {
+            position: relative;
+        }
+
+        .img-container::before {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: rgb(106, 194, 180, 0.7);
+            transition: 0.4s;
+        }
+
+        figcaption {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 20px;
+            position: relative;
+            top: -20px;
+            background-color: white;
+            width: 100px;
+            margin: auto;
+            transition: width 0.4s, top 1s;
+        }
+
+        figcaption div {
+            width: fit-content;
+        }
+
+        figcaption div:nth-of-type(2) {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <figure>
+        <div class="img-container">
+            <img src="../img/ocean.jpg" alt="">
+        </div>
+        <figcaption>
+            <div>Someone</div>
+            <div>CTO</div>
+        </figcaption>
+    </figure>
+</body>
+</html>

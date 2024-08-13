@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/9b220e24a6.js" crossorigin="anonymous"></script>
     <script src="../sources/moment.js"></script>
+    <script src="./emoji-lib/emoji.js"></script>
     <link rel="stylesheet" href="../sources/normalize.css">
     <link rel="stylesheet" href="../sources/responsive.css">
 </head>
@@ -188,10 +189,6 @@
         height: 100%;
     }
 
-    .massaging-container {
-        padding: 10px 20px;
-    }
-
     .massaging .header {
         padding: 10px;
         font-size: 13px;
@@ -293,116 +290,104 @@
         font-weight: inherit;
     }
 
-    .massaging .footer .massaging-container form {
-        position: relative;
-        height: 40px;
-        display: flex;
-        align-items: center;
+    .massaging .footer {
+        padding: 10px 20px;
     }
 
-    .massaging .footer .massaging-container > input {
+    .massaging .footer .chat-msg-form {
+        display: flex;
+        position: relative;
         width: 100%;
-        height: 100%;
+        height: 50px;
         border-radius: 5px;
         background-color: #ECEFF1;
-        border:none;
-        outline: none;
-        padding-left: 30px;
-        padding-right: 55px;
-        font-size: 13px;
     }
 
-    .massaging .footer .massaging-container i {
-        position: absolute;
-        width: 16px;
-        height: 100%;
+    .massaging .footer i {
+        width: 20px;
+        height: 20px;
         cursor: pointer;
         color: grey;
-        display: flex;
-        align-items: center;
-    }
-
-    .massaging .footer .massaging-container .paperclip {
-        left: 10px;
-    }
-
-    .massaging .footer .massaging-container .paperclip:hover {
-        color: black;
-    }
-
-    .massaging .footer .massaging-container .emoji-btn {
-        right: 35px;
-        position: relative;
-    }
-
-    .massaging .footer .massaging-container .emoji-btn:hover {
-        color: goldenrod;
-    }
-
-    .massaging .footer .massaging-container .send-msg-btn {
-        right: 10px;
-    }
-
-    .massaging .footer .massaging-container .send-msg-btn:hover {
-        color: var(--blue-color);
-    }
-
-    .massaging .footer input.attach-file {
-        display: none;
-    }
-
-    .emoji-picker {
-        border: 1px solid #dddddd;
-
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    .emoji-picker input.search {
-        padding: 8px;
-        margin: 10px;
-        border-radius: 5px;
-        outline: none;
-        border: 1px solid #dddddd;
-        font-size: 18px;
-    }
-
-    .emoji-picker .tabs {
-        border-bottom: 1px solid #dddddd;
-        display: flex;
-        align-items: center;
-    }
-
-    .emoji {
-        width: 40px;
-        height: 40px;
-        font-size: 22px;
-        padding: 5px;
+        transition: 0.3s;
+        font-size: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
-        cursor: pointer;
+    }    
+
+    .massaging .footer i.emoji-btn-show {
+        margin-left: 10px;
     }
 
-    .emoji-picker .tab.active {
-        border-bottom: 2px solid #355AC2;
+    .massaging .footer i.emoji-btn-show:hover,
+    .massaging .footer i.emoji-btn-show.active {
+        color: gold;
     }
 
-    .emoji-picker .tab-body {
-        height: 240px;
-        overflow-y: auto;
-        scrollbar-width: thin;
+    .massaging .footer i.emoji-btn-hide {
+        width: 0;
+        font-size: 0;
     }
 
-    .emoji-picker .collection {
+    .massaging .footer i.emoji-btn-hide:hover {
+        color: red;
+    }
+
+    .massaging .footer i.emoji-btn-hide.active {
+        margin-left: 10px;
+        width: 20px;
+        height: 20px;
+        font-size: 18px;
+    }
+
+    .massaging .footer .emoji-picker-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    emoji-picker {
+        position: absolute;
+        left: 0px;
+        bottom: calc(100% + 5px);
+    }
+
+    .massaging .footer .chat-txt {
+        background-color: inherit;
+        border: none;
+        outline: none;
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 13px;
+        flex: 1;
+    }
+
+    .massaging .footer .right-icons-wrapper {
+        height: 100%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .massaging .footer .paperclip {
+        margin: 0 10px;
+    }
+
+    .massaging .footer .paperclip:hover {
+        color: black;
+    }
+
+    .massaging .footer .paperclip .attach-file {
         display: none;
     }
 
-    .emoji-picker .collection.visible {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
+    .massaging .footer .send-msg-btn {
+        margin-right: 10px;
+    }
+
+    .massaging .footer .send-msg-btn:hover {
+        color: var(--blue-color);
     }
 </style>
 <body>
@@ -418,90 +403,20 @@
             <div class="header"></div>
             <div class="body"></div>
             <div class="footer">
-                <div class="massaging-container">
-                    <form class="chat-msg-form">
-                        <input type="text" class="chat-txt">
+                <form class="chat-msg-form">
+                    <div class="emoji-picker-wrapper">
+                        <i class="fa-regular fa-circle-xmark emoji-btn-hide"></i>
+                        <i class="fa-regular fa-face-smile emoji-btn-show"></i>
+                        <emoji-picker></emoji-picker>
+                    </div>
+                    <input type="text" class="chat-txt" placeholder="Type your message ..">
+                    <div class="right-icons-wrapper">
                         <i class="fa-solid fa-paperclip paperclip" tool>
                             <input class="attach-file" type="file" name="attach-file" id="attach-file">
                         </i>
-                        <i class="fa-regular fa-face-smile emoji-btn"></i>
-                        <div class="emoji-picker">
-                            <input type="text" class="search" name="emoji-search" id="emoji-search" placeholder="Search">
-                            <div class="tabs">
-                                <span class="tab active emoji" collection-name="smiles">&#x1F600</span>
-                                <span class="tab emoji" collection-name="hearts">&#x1F493</span>
-                            </div>
-                            <div class="tab-body">
-                                <div class="collection smiles visible">
-                                    <span class="emoji">&#x1F600</span>
-                                    <span class="emoji">&#x1F601</span>
-                                    <span class="emoji">&#x1F602</span>
-                                    <span class="emoji">&#x1F603</span>
-                                    <span class="emoji">&#x1F604</span>
-                                    <span class="emoji">&#x1F605</span>
-                                    <span class="emoji">&#x1F606</span>
-                                    <span class="emoji">&#x1F607</span>
-                                    <span class="emoji">&#x1F608</span>
-                                    <span class="emoji">&#x1F609</span>
-                                    <span class="emoji">&#x1F60A</span>
-                                    <span class="emoji">&#x1F60B</span>
-                                    <span class="emoji">&#x1F60C</span>
-                                    <span class="emoji">&#x1F60D</span>
-                                    <span class="emoji">&#x1F60E</span>
-                                    <span class="emoji">&#x1F60F</span>
-                                    <span class="emoji">&#x1F610</span>
-                                    <span class="emoji">&#x1F611</span>
-                                    <span class="emoji">&#x1F612</span>
-                                    <span class="emoji">&#x1F613</span>
-                                    <span class="emoji">&#x1F614</span>
-                                    <span class="emoji">&#x1F615</span>
-                                    <span class="emoji">&#x1F616</span>
-                                    <span class="emoji">&#x1F617</span>
-                                    <span class="emoji">&#x1F618</span>
-                                    <span class="emoji">&#x1F619</span>
-                                    <span class="emoji">&#x1F61A</span>
-                                    <span class="emoji">&#x1F61B</span>
-                                    <span class="emoji">&#x1F61C</span>
-                                    <span class="emoji">&#x1F61D</span>
-                                    <span class="emoji">&#x1F61E</span>
-                                    <span class="emoji">&#x1F61F</span>
-                                    <span class="emoji">&#x1F620</span>
-                                    <span class="emoji">&#x1F621</span>
-                                    <span class="emoji">&#x1F622</span>
-                                    <span class="emoji">&#x1F623</span>
-                                    <span class="emoji">&#x1F624</span>
-                                    <span class="emoji">&#x1F625</span>
-                                    <span class="emoji">&#x1F626</span>
-                                    <span class="emoji">&#x1F627</span>
-                                    <span class="emoji">&#x1F628</span>
-                                    <span class="emoji">&#x1F629</span>
-                                    <span class="emoji">&#x1F62A</span>
-                                    <span class="emoji">&#x1F62B</span>
-                                    <span class="emoji">&#x1F62C</span>
-                                    <span class="emoji">&#x1F62D</span>
-                                    <span class="emoji">&#x1F62E</span>
-                                    <span class="emoji">&#x1F62F</span>
-                                </div>
-                                <div class="collection hearts">
-                                    <span class="emoji">&#x1F493</span>
-                                    <span class="emoji">&#x1F494</span>
-                                    <span class="emoji">&#x1F495</span>
-                                    <span class="emoji">&#x1F496</span>
-                                    <span class="emoji">&#x1F497</span>
-                                    <span class="emoji">&#x1F498</span>
-                                    <span class="emoji">&#x1F499</span>
-                                    <span class="emoji">&#x1F49A</span>
-                                    <span class="emoji">&#x1F49B</span>
-                                    <span class="emoji">&#x1F49C</span>
-                                    <span class="emoji">&#x1F49D</span>
-                                    <span class="emoji">&#x1F49E</span>
-                                    <span class="emoji">&#x1F49F</span>
-                                </div>
-                            </div>
-                        </div>
                         <i class="fa-solid fa-paper-plane send-msg-btn"></i>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -733,7 +648,7 @@
             let input = footer.querySelector(".paperclip input");
             paperclip.onclick = () => input.click();
 
-            let emojiButton = footer.querySelector(".emoji-btn");
+            let emojiButton = footer.querySelector(".emoji-btn-show");
             emojiButton.onclick = () => { 
                 console.log("emoji btn clicked");
                 msgField.value = msgField.value + String.fromCodePoint(0x231A);
@@ -773,29 +688,25 @@
             msgField.value = "";
         }
     </script>
-
     <script>
-        let emojiPicker = document.querySelector(".emoji-picker");
-        emojiPicker.querySelectorAll(".tab").forEach(tab => {
-            tab.onclick = (e) => {
-                if(emojiPicker.querySelector(".tab.active")) {
-                    console.log("active tab")
-                    emojiPicker.querySelector(".tab.active").classList.remove("active");
-                }
-                console.log(tab)
-                tab.classList.add("active");
-
-                let tabContentClass = tab.getAttribute("collection-name");
-                let tabContent = emojiPicker.querySelector("." + tabContentClass);
-                let tabBody = document.querySelector(".tab-body");
-
-                if(tabBody.querySelector(".visible")) {
-                    tabBody.querySelector(".visible").classList.toggle("visible");
-                }
-
-                tabBody.appendChild(tabContent);
-                tabContent.classList.toggle("visible");
-            }
+        let emojiPicker = document.querySelector("emoji-picker");
+        let emojiBtnShow = document.querySelector(".emoji-btn-show");
+        let emojiBtnHide = document.querySelector(".emoji-btn-hide");
+        
+        emojiBtnShow.onclick = () => {
+            emojiPicker.show();
+            emojiBtnShow.classList.add("active");
+            emojiBtnHide.classList.add("active");
+        };
+    
+        emojiBtnHide.onclick = () => {
+            emojiPicker.hide();
+            emojiBtnShow.classList.remove("active");
+            emojiBtnHide.classList.remove("active");
+        };
+    
+        emojiPicker.addEventListener("emoji-picked", (e) => {
+            console.log(e.detail.emojiVal);
         });
     </script>
 </body>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colored Boxes</title>
+    <link rel="stylesheet" href="../sources/normalize.css">
+    <link rel="stylesheet" href="../sources/responsive.css">
+    <style>
+        * {
+            font-family: "Roboto", sans-serif;
+            font-weight: 100;
+            font-style: normal;
+            color: white;
+        }
+
+        .one {
+            background-color: #1ABC9C;
+            width: 200px;
+            height: 100px;
+            grid-column: span 4;
+            grid-row: 1 / span 2;
+        }
+
+        .two {
+            background-color: #E67E22;
+            width: 400px;
+            height: 50px;
+            grid-column: span 8;
+            grid-row: 1 / span 1;
+        }
+
+        .three {
+            background-color: #27AE60;
+            width: 400px;
+            height: 50px;
+            grid-column: span 8;
+            grid-row: 2 / span 1;
+        }
+
+        .four {
+            background-color: #F39C12;
+            width: 150px;
+            height: 100px;
+            grid-column: span 3;
+            grid-row: 1 / span 2;
+        }
+
+        .five {
+            background-color: #3498DB;
+            width: 300px;
+            height: 50px;
+            grid-area: five;
+            grid-column: span 6;
+            grid-row: 3 / span 1;
+        }
+
+        .six {
+            background-color: #8E44AD;
+            width: 150px;
+            height: 50px;
+            grid-area: six;
+            grid-column: span 3;
+            grid-row: 3 / span 1;
+        }
+
+        .seven {
+            background-color: #2C3E50;
+            width: 450px;
+            height: 50px;
+            grid-column: span 9;
+            grid-row: 4 / span 1;
+        }
+
+        .eight {
+            background-color: #C0392B;
+            width: 300px;
+            height: 100px;
+            grid-column: span 6;
+            grid-row: 3 / span 2;
+        }
+
+        .float, .flex, .grid {
+            width: 750px;
+            margin-bottom: 50px;
+        }
+
+        .float div,
+        .flex div,
+        .grid div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .float .fl {
+            float: left;
+        }
+
+        .flex {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .flex-c {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(15, 1fr);
+       }
+    </style>
+</head>
+<body>
+    <div class="float">
+        <div class="one fl">One</div>
+        <div class="two fl">Two</div>
+        <div class="three fl">Three</div>
+        <div class="four">Four</div>
+        <div class="five fl">Five</div>
+        <div class="six fl">Six</div>
+        <div class="seven fl">Seven</div>
+        <div class="eight">eight</div>
+    </div>
+    <hr>
+    <div class="flex">
+        <div class="one">One</div>
+        <div class="flex-c">
+            <div class="two">Two</div>
+            <div class="three">Three</div>
+        </div>
+        <div class="four">Four</div>
+        <div class="flex-c">
+            <div>
+                <div class="five">Five</div>
+                <div class="six">Six</div>
+            </div>
+            <div class="seven">Seven</div>
+        </div>
+        <div class="eight">eight</div>
+    </div>
+    <hr>
+    <div class="grid">
+        <div class="one">One</div>
+        <div class="two">Two</div>
+        <div class="three">Three</div>
+        <div class="four">Four</div>
+        <div class="five">Five</div>
+        <div class="six">Six</div>
+        <div class="seven">Seven</div>
+        <div class="eight">eight</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smiley Face</title>
+    <link rel="stylesheet" href="../sources/normalize.css">
+    <link rel="stylesheet" href="../sources/responsive.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="face"></canvas>
+    <canvas id="name"></canvas>
+</body>
+<script>
+    const canvas = document.getElementById("face");
+    const ctx = canvas.getContext("2d");
+
+    ctx.beginPath();
+    ctx.arc(150, 75, 50, 0, 2 * Math.PI);
+    ctx.fillStyle = "yellow";
+    ctx.fill();
+    ctx.lineWidth = 4;
+    ctx.strokeStyle = "black";
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(130, 60, 10, 0, 2 * Math.PI);
+    ctx.fillStyle = "black";
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(170, 60, 10, 0, 2 * Math.PI);
+    ctx.fillStyle = "black";
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(150, 70, 35, 0.523599, 2.617995850207);
+    ctx.lineWidth = 4;
+    ctx.strokeStyle = "black";
+    ctx.stroke();
+
+    const nameCanvas = document.getElementById("name");
+    const nameCtx = nameCanvas.getContext("2d");
+    nameCtx.font = "50px Arial";
+    nameCtx.strokeStyle = "orange";
+    nameCtx.strokeText("Elzero", 75, 40);
+</script>
+</html>

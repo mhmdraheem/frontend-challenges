@@ -187,6 +187,8 @@
         justify-content: flex-start;
         min-width: 350px;
         height: 100%;
+        background-image: url("../img/joanna-kosinska-uGcDWKN91Fs-unsplash.jpg");
+        background-size: cover;
     }
 
     .massaging .header {
@@ -642,7 +644,7 @@
 
         function clearFooter() {
             document.querySelector(".massaging .footer .chat-txt").value = '';
-            document.querySelector(".massaging .footer emoji-picker").hide();
+            hideEmojiPicker();
         }
 
         function registerFooterCallbacks() {
@@ -664,9 +666,7 @@
             };
         
             emojiBtnHide.onclick = () => {
-                emojiPicker.hide();
-                emojiBtnShow.classList.remove("active");
-                emojiBtnHide.classList.remove("active");
+                hideEmojiPicker();
             };
         
             emojiPicker.addEventListener("emoji-picked", (e) => {
@@ -684,6 +684,16 @@
             sendMsgButton.onclick = () => addMessage(msgField);
         }
 
+        function hideEmojiPicker() {
+            let emojiPicker = document.querySelector("emoji-picker");
+            let emojiBtnShow = document.querySelector(".emoji-btn-show");
+            let emojiBtnHide = document.querySelector(".emoji-btn-hide");
+            
+            emojiPicker.hide();
+            emojiBtnShow.classList.remove("active");
+            emojiBtnHide.classList.remove("active");
+        }
+
         function addMessage(msgField) {
             if(msgField.value) {
                 let newMsg = createMsg(msgField.value);
@@ -693,6 +703,7 @@
 
                 addMessageToView(newMsg);
                 clearInputTextField(msgField);
+                updateContactsMenuMessage(newMsg);
             }
         }
 
@@ -706,6 +717,11 @@
 
         function clearInputTextField(msgField) {
             msgField.value = "";
+        }
+
+        function updateContactsMenuMessage(newMsg) {
+            document.querySelector(".contacts-menu .contact-row.active .msg").innerText = newMsg.text;
+            document.querySelector(".contacts-menu .contact-row.active .date").innerText = getTime12(newMsg.date);
         }
     </script>
 </body>

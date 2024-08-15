@@ -10,23 +10,53 @@
     <script src="https://kit.fontawesome.com/9b220e24a6.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../sources/normalize.css">
     <link rel="stylesheet" href="../sources/responsive.css">
-    <style>
-
-        :root {
-            --primary-color: #0D40C6;
-        }
-
-        * {
-            font-family: "Roboto", sans-serif;
-            font-weight: 100;
-            font-style: normal;
-        }
-
-        
-
-    </style>
+    <link rel="stylesheet" href="10-bitcoin-dashboard.css">
 </head>
 <body>
-    
+    <nav>
+        <i class="nav-icon nav-control-icon fa-solid fa-bars"></i>
+        <a href="#">
+            <i class="nav-icon fa-solid fa-gauge-high"></i>
+            <span class="nav-link-text hidden">Dashboard</span>
+        </a>
+        <a href="#">
+            <i class="nav-icon fa-solid fa-arrow-right-arrow-left"></i>
+            <span class="nav-link-text hidden">Exchange</span>
+        </a>
+        <a href="#">
+            <i class="nav-icon fa-regular fa-user"></i>
+            <span class="nav-link-text hidden">Profile</span>
+        </a>
+        <a href="#">
+            <i class="nav-icon fa-solid fa-screwdriver-wrench"></i>
+            <span class="nav-link-text hidden">Configure</span>
+        </a>
+    </nav>
+    <header>
+        <span class="logo">Tradix</span>
+        <span class="exchange-rate">
+            <span class="bitcoint-unit">
+                0.0025 
+                <i class="fa-solid fa-bitcoin-sign"></i> 
+            </span>
+            <span class="usd-unit">219.63 USD</span>
+        </span>
+        <span class="profile">
+            <i class="profile-icon fa-regular fa-user"></i>
+            <span class="profile-menu"></span>
+        </span>
+        <span class="welcome-message">Welcome back, username</span>
+    </header>
+    <main>
+        <div class="exchange-form"></div>
+        <div class="exchange-summary"></div>
+    </main>
 </body>
+<script>
+    let navControlIcon = document.querySelector(".nav-control-icon");
+    navControlIcon.onclick = (e) => {
+        e.target.classList.toggle("nav-opening");
+        document.querySelectorAll(".nav-link-text").forEach(elm => elm.classList.toggle("hidden"));
+    }
+</script>
 </html>

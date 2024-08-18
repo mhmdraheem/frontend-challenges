@@ -33,30 +33,134 @@
         </a>
     </nav>
     <header>
-        <span class="logo">Tradix</span>
+        <a href="#" class="logo">Tradix</a>
         <span class="exchange-rate">
-            <span class="bitcoint-unit">
+            <span class="currency bitcoin active">
                 0.0025 
                 <i class="fa-solid fa-bitcoin-sign"></i> 
             </span>
-            <span class="usd-unit">219.63 USD</span>
+            <span class="currency usd">219.63 USD</span>
         </span>
         <span class="profile">
-            <i class="profile-icon fa-regular fa-user"></i>
-            <span class="profile-menu"></span>
+            <i class="profile-icon nav-icon fa-regular fa-user"></i>
+            <div class="profile-menu-opener">
+                <span class="username">username</span>
+                <i class="arrow-down fa-solid fa-chevron-down"></i>
+            </div>
+            <ul class="profile-menu-items">
+                <li><a href="#">You Balance</a></li>
+                <li><a href="#">Account Settings</a></li>
+                <li><a href="#">Transactions</a></li>
+                <li><a href="#">History</a></li>
+                <li><a href="#">Others</a></li>
+            </ul>
         </span>
-        <span class="welcome-message">Welcome back, username</span>
     </header>
     <main>
-        <div class="exchange-form"></div>
+        <div class="exchange-form">
+            <div class="flex-wrapper">
+                <button class="exchange-btn active">Buy</button>
+                <button class="exchange-btn">Sell</button>
+            </div>
+            <form action="#">
+                <label class="form-label" for="currency">Currency</label>
+                <div class="flex-wrapper">
+                    <select class="currency-selector" name="currency" id="currency">
+                        <option value="&#x20BF">Bitcoin</option>
+                        <option value="usd">USD</option>
+                    </select>
+                    <input type="number" name="currency" id="currency" placeholder="1000 &#x20BF">
+                </div>
+
+                <label class="form-label" for="payment-method">Payment Method</label>
+                <div class="flex-wrapper">
+                    <select class="payment-method-selector" name="payment-method" id="payment-method">
+                        <option value="&#x20BF">Bitcoin</option>
+                        <option value="usd">USD</option>
+                    </select>
+                    <input type="number" name="payment-method" id="payment-method" placeholder="1000 &#x20BF">
+                </div>
+
+                <label class="form-label" for="amount">Enter Your Amount</label>
+                <input type="number" name="amount-usd" id="amount" placeholder="1000 USD/&#x20BF">
+                
+                <div class="flex-wrapper monthly-limit">
+                    <span>Monthly Limit</span>
+                    <span>$49,750 remaining</span>
+                </div>
+                <input type="submit" value="Exchange Now">
+            </form>
+            <span class="note">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde, dolore cupiditate 
+                ipsa accusantium facere voluptate at quia odio maiores.
+            </span>
+        </div>
         <div class="exchange-summary"></div>
     </main>
 </body>
 <script>
-    let navControlIcon = document.querySelector(".nav-control-icon");
-    navControlIcon.onclick = (e) => {
-        e.target.classList.toggle("nav-opening");
-        document.querySelectorAll(".nav-link-text").forEach(elm => elm.classList.toggle("hidden"));
+
+    registerNavEvents();
+    registerHeaderEvents();
+    registerExchangeFormEvents();
+
+    function registerNavEvents() {
+        let navControlIcon = document.querySelector(".nav-control-icon");
+        navControlIcon.onclick = (e) => {
+            e.target.classList.toggle("nav-opening");
+            document.querySelectorAll(".nav-link-text").forEach(elm => elm.classList.toggle("hidden"));
+        }
     }
+    
+    function registerHeaderEvents() {
+        registerCurrencyClickEvent();
+        registerProfileClickEvents();
+    }
+    
+    function registerCurrencyClickEvent() {
+        document.querySelectorAll("header .currency").forEach(currency => {
+            currency.onclick = (e) => {
+                document.querySelector("header .currency.active").classList.remove("active");
+                currency.classList.add("active");
+            };
+        });
+    }
+
+    function registerProfileClickEvents() {
+        let profileMenuOpener = document.querySelector(".profile .profile-menu-opener");
+        let profileItems = document.querySelector(".profile .profile-menu-items");
+       
+        profileMenuOpener.onclick = (e) => {
+            profileItems.classList.toggle("visible");
+        }
+
+        profileItems.querySelectorAll("li").forEach(link => {
+            link.onclick = (e) => console.log(e.target.innerText) 
+        });
+
+        document.addEventListener("click", e => {
+            if(!profileMenuOpener.contains(e.target) && !e.target.contains(profileItems)) {
+                if(profileItems.classList.contains("visible")) {
+                   profileItems.classList.remove("visible");
+                }
+            }
+        })
+    }
+
+    function registerExchangeFormEvents() {
+        document.querySelectorAll(".exchange-btn").forEach(btn => {
+            btn.onclick = () => {
+                document.querySelector(".exchange-btn.active").classList.remove("active");
+                btn.classList.add("active");
+            }
+        });
+
+        document.querySelectorAll("select").forEach(elem => {
+            elem.onchange = (e) => {
+                elem.nextElementSibling.placeholder = "1000 " + e.target.value.toUpperCase();
+            }
+        });
+    }
+
 </script>
 </html>

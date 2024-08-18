@@ -1,6 +1,6 @@
 :root {
   --primary-color: #0D40C6;
-  --section-padding: 10px;
+  --section-padding: 10px 20px;
 }
 
 * {
@@ -19,13 +19,13 @@ a {
 
 body {
   display: grid;
-  grid-template-areas: "nav . header header" "nav . main main";
-  grid-template-columns: 60px 50px 1fr 1fr;
-  grid-template-rows: 100px 1fr;
+  grid-template-areas: "nav header header" "nav main main";
+  grid-template-columns: 60px 1fr 1fr;
+  grid-template-rows: 60px 1fr;
   transition: 0.3s;
 }
 body:has(.nav-control-icon.nav-opening) {
-  grid-template-columns: 200px 1fr 1fr;
+  grid-template-columns: 200px 50px 1fr 1fr;
 }
 
 nav {
@@ -66,8 +66,11 @@ nav .nav-control-icon {
 header {
   grid-area: header;
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   padding: var(--section-padding);
+  color: var(--primary-color);
+  border-bottom: 1px solid #EEEEEE;
 }
 header .logo {
   color: var(--primary-color);
@@ -75,29 +78,175 @@ header .logo {
   font-size: 25px;
 }
 header .exchange-rate {
+  --exchange-rate-color: #dfe6fb;
   margin-left: auto;
+  margin-right: 15px;
+  border: 1px solid var(--exchange-rate-color);
+  border-radius: 20px;
+  overflow: hidden;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
-header .welcome-message {
-  width: 100%;
+header .currency {
+  padding: 5px 10px;
+}
+header .currency.active {
+  background-color: var(--exchange-rate-color);
+}
+header .profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+header .profile-icon {
+  width: 32px;
+  height: 32px;
+  color: white;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+header .profile-menu-opener {
+  display: flex;
+  gap: 10px;
+  cursor: pointer;
+}
+header .profile-menu-opener:hover {
+  border-bottom: 1.5px solid var(--primary-color);
+}
+header .profile-menu-opener .arrow-down {
+  font-size: 15px;
+  color: var(--primary-color);
+  opacity: 0.7;
+}
+header .profile-menu-items {
+  width: 250px;
+  background-color: white;
+  list-style: none;
+  position: absolute;
+  bottom: calc(-100% + 15px);
+  right: 0;
+  transform: translateY(100%);
+  z-index: 999;
+  border: 1px solid #e0dfdf;
+  display: none;
+}
+header .profile-menu-items.visible {
+  display: block;
+}
+header .profile-menu-items li {
+  border-bottom: 1px solid #e0dfdf;
+  transition: background-color 0.2s;
+}
+header .profile-menu-items li:hover {
+  background-color: rgba(224, 223, 223, 0.4);
+}
+header .profile-menu-items a {
+  display: block;
+  padding: 20px 10px;
+  color: var(--primary-color);
+}
+header .username {
+  font-size: 14px;
 }
 
 main {
   grid-area: main;
   padding: var(--section-padding);
-  background-color: green;
   display: flex;
-  gap: 20px;
+  gap: 10px;
 }
 main .exchange-form,
 main .exchange-summary {
   width: 100%;
   height: 100%;
+  display: flex;
 }
 
 .exchange-form {
-  background-color: blue;
+  flex-direction: column;
 }
-
-.exchange-summary {
-  background-color: black;
+.exchange-form .flex-wrapper {
+  display: flex;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+.exchange-form .flex-wrapper:nth-child(1) {
+  gap: 10px;
+}
+.exchange-form .flex-wrapper input, .exchange-form .flex-wrapper select {
+  width: 50%;
+}
+.exchange-form .flex-wrapper input:nth-child(2) {
+  border-left: 1px solid #EEEEEE;
+}
+.exchange-form input[type=number], .exchange-form select {
+  background-color: #F2F6FE;
+  border: none;
+  padding: 10px 15px;
+  outline: none;
+  color: rgba(0, 0, 0, 0.5);
+}
+.exchange-form select {
+  cursor: pointer;
+}
+.exchange-form .exchange-btn {
+  height: 40px;
+  color: var(--primary-color);
+  background-color: white;
+  flex: 1 1 calc(50% - 10px);
+  border: 1px solid #EEEEEE;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.exchange-form .exchange-btn.active {
+  border: none;
+  color: white;
+  background-color: var(--primary-color);
+}
+.exchange-form form {
+  display: flex;
+  flex-direction: column;
+}
+.exchange-form .form-label {
+  font-size: 14px;
+  font-weight: 500;
+}
+.exchange-form .monthly-limit {
+  margin-top: 20px;
+  margin-bottom: 50px;
+  font-size: 12px;
+}
+.exchange-form .monthly-limit :first-child {
+  margin-right: auto;
+  color: var(--primary-color);
+}
+.exchange-form .monthly-limit :last-child {
+  margin-left: auto;
+  font-weight: 500;
+}
+.exchange-form input[type=submit] {
+  height: 40px;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  color: white;
+  background-color: #10D876;
+}
+.exchange-form .note {
+  font-size: 10px;
+  margin-top: auto;
+  line-height: 1.7;
 }/*# sourceMappingURL=10-bitcoin-dashboard.css.map */

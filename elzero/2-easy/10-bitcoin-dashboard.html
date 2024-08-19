@@ -17,19 +17,19 @@
         <i class="nav-icon nav-control-icon fa-solid fa-bars"></i>
         <a href="#">
             <i class="nav-icon fa-solid fa-gauge-high"></i>
-            <span class="nav-link-text hidden">Dashboard</span>
+            <span>Dashboard</span>
         </a>
         <a href="#">
             <i class="nav-icon fa-solid fa-arrow-right-arrow-left"></i>
-            <span class="nav-link-text hidden">Exchange</span>
+            <span>Exchange</span>
         </a>
         <a href="#">
             <i class="nav-icon fa-regular fa-user"></i>
-            <span class="nav-link-text hidden">Profile</span>
+            <span>Profile</span>
         </a>
         <a href="#">
             <i class="nav-icon fa-solid fa-screwdriver-wrench"></i>
-            <span class="nav-link-text hidden">Configure</span>
+            <span>Configure</span>
         </a>
     </nav>
     <header>
@@ -65,20 +65,20 @@
             <form action="#">
                 <label class="form-label" for="currency">Currency</label>
                 <div class="flex-wrapper">
-                    <select class="currency-selector" name="currency" id="currency">
+                    <select class="currency-selector" id="currency-selector">
                         <option value="&#x20BF">Bitcoin</option>
                         <option value="usd">USD</option>
                     </select>
-                    <input type="number" name="currency" id="currency" placeholder="1000 &#x20BF">
+                    <input type="number" id="currency" placeholder="1000 &#x20BF">
                 </div>
 
                 <label class="form-label" for="payment-method">Payment Method</label>
                 <div class="flex-wrapper">
-                    <select class="payment-method-selector" name="payment-method" id="payment-method">
+                    <select class="payment-method-selector" id="payment-method-selector">
                         <option value="&#x20BF">Bitcoin</option>
                         <option value="usd">USD</option>
                     </select>
-                    <input type="number" name="payment-method" id="payment-method" placeholder="1000 &#x20BF">
+                    <input type="number" id="payment-method" placeholder="1000 &#x20BF">
                 </div>
 
                 <label class="form-label" for="amount">Enter Your Amount</label>
@@ -95,7 +95,46 @@
                 ipsa accusantium facere voluptate at quia odio maiores.
             </span>
         </div>
-        <div class="exchange-summary"></div>
+        <div class="exchange-summary">
+            <div class="buyer">
+                <img src="../img/cat.png" alt="buyer-image">
+                <div class="info">
+                    <span>Buyer</span>
+                    <span>Eman</span>
+                    <span>hello@example.com</span>
+                </div>
+            </div>
+
+            <div class="seller">
+                <div class="info seller-info">
+                    <span>Sender</span>
+                    <span>Osama</span>
+                    <span>hello@example.com</span>
+                </div>
+                <img src="../img/ocean-squared.jpg" alt="sender-image">
+            </div>
+
+            <span class="key key1">You are selling</span>
+            <span class="value value1">0.00254</span>
+            
+            <span class="key">Payment Method</span>
+            <span class="value">Bank of America **************5245</span>
+            
+            <span class="key">Exchange Rate</span>
+            <span class="value">0.00212455 BTC</span>
+            
+            <span class="key">Fee</span>
+            <span class="value">$28.00 USD</span>
+            
+            <span class="key">Total</span>
+            <span class="value">$854.00 USD</span>
+            
+            <span class="key vat">Vat</span>
+            <span class="value vat">$25.00 USD</span>
+            
+            <span class="key">Sub Total</span>
+            <span class="value">$1232.00 USD</span>
+        </div>
     </main>
 </body>
 <script>
@@ -107,8 +146,9 @@
     function registerNavEvents() {
         let navControlIcon = document.querySelector(".nav-control-icon");
         navControlIcon.onclick = (e) => {
-            e.target.classList.toggle("nav-opening");
-            document.querySelectorAll(".nav-link-text").forEach(elm => elm.classList.toggle("hidden"));
+            navControlIcon.classList.toggle("nav-opening");
+            document.querySelector("nav .nav-control-icon").classList.toggle("nav-opened");
+            document.querySelectorAll("nav a").forEach(elm => elm.classList.toggle("nav-opened"));
         }
     }
     

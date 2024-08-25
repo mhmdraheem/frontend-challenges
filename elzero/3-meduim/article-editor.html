@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Editor</title>
+    <link rel="stylesheet" href="../sources/normalize.css">
+    <style>
+        :root {
+            --fs: 15px;
+        }
+
+        body {
+            background-color: #EEEEEE;
+            padding: 10px;
+        }
+        
+        button {
+            border: none;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .fonts {
+            border: none;
+            outline: none;
+            position: relative;
+        }
+
+        .fonts, .font-weight, .font-size > * , .invert-colors {
+            padding: 5px 10px;
+            background-color: white;
+        }
+
+        .font-size {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .font-value {
+            display: block;
+            width: 20px;
+            text-align: center;
+        }
+
+        .active {
+            color: blueviolet;
+            background-color: #e8e0e0;
+        }
+
+        :has(.font-weight.active) p {
+            font-weight: bold;
+        }
+
+        .increment.inactive, .decrement.inactive {
+            cursor: not-allowed;
+            opacity: 0.2;
+        }
+
+        .font-weight, .increment, .decrement, .invert-colors {
+            cursor: pointer;
+        }
+
+        .increment:hover, .decrement:hover {
+            background-color: #e8e0e0;
+        }
+        
+        :has(.invert-colors.active) p {
+            color: white;
+            background-color: black;
+        }
+
+        p {
+            background-color: white;
+            padding: 10px;
+            line-height: 1.7;
+            font-size: var(--fs);
+            font-family: var(--ff);
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <select class="fonts" name="fonts">
+            <option value="initial">Choose font</option>
+            <option value="'Courier New', Courier, monospace">Courier</option>
+            <option value="'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Franklin</option>
+            <option value="Arial, Helvetica, sans-serif">Dongle</option>
+        </select>
+        <b class="font-weight">B</b>
+        <div class="font-size">
+            <button class="decrement">-</button>
+            <span class="font-value">15</span>
+            <button class="increment">+</button>
+        </div>
+        <span class="invert-colors">Invert Colors</span>
+    </div>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias ut distinctio, velit eaque architecto,
+        cupiditate similique rem dolorum in nobis sequi minima quidem debitis a ducimus eos, nihil consequuntur quod!
+    </p>
+</body>
+<script>
+    document.querySelector(".fonts").onchange = (e) => {
+        document.documentElement.style.setProperty("--ff", e.target.value);
+    };
+
+    document.querySelector(".font-weight").onclick = (e) => e.target.classList.toggle("active");
+    
+    document.querySelector(".increment").onclick = (e) => {
+        let fontValueElem = e.target.previousElementSibling;
+        
+        if(+fontValueElem.innerText < 20) {
+            fontValueElem.innerText = +fontValueElem.innerText + 1;
+            document.documentElement.style.setProperty('--fs', fontValueElem.innerText + 'px');
+        }
+
+        if(fontValueElem.innerText >= 20) {
+            e.target.classList.add("inactive");
+        }
+
+        let decrement = document.querySelector(".decrement.inactive");
+        if(decrement) {
+            decrement.classList.remove("inactive");
+        }
+    };
+
+    document.querySelector(".decrement").onclick = (e) => {
+        let fontValueElem = e.target.nextElementSibling;
+
+        if(+fontValueElem.innerText > 10) {
+            fontValueElem.innerText = +fontValueElem.innerText - 1;
+            document.documentElement.style.setProperty('--fs', fontValueElem.innerText + 'px');
+        }
+
+        if(fontValueElem.innerText <= 10) {
+            e.target.classList.add("inactive");
+        }
+
+        let increment = document.querySelector(".increment.inactive");
+        if(increment) {
+            increment.classList.remove("inactive");
+        }
+    };
+    
+    document.querySelector(".invert-colors").onclick = (e) => e.target.classList.toggle("active");
+</script>
+</html>

@@ -24,55 +24,60 @@
             </ul>
         </i>
     </header>
-    <main>
+    <main class="orders-layout">
         <form id="search-form" class="search-bar" action="#">
             <input type="text" id="invoice-search" name="invoice-search" placeholder="Invoice Search">
             <input type="text" id="name-search" name="name-search" placeholder="Search by Name">
             <input type="text" id="phone-search" name="phone-search" placeholder="Search by Phone">
             <input type="submit" value="Search">
         </form>
-        <div class="orders-header">
+        <div id="layout-header" class="layout-header">
             <input type="checkbox" name="check-all" id="check-all">
             <span>Invoice</span>
             <span>Image</span>
             <span>
                 Menu
-                <i class="fa-solid fa-caret-down"></i>
+                <i class="sort-icon fa-solid fa-caret-down"></i>
             </span>
             <span>
                 Customer Name
-                <i class="fa-solid fa-caret-down"></i>
+                <i class="sort-icon fa-solid fa-caret-down"></i>
             </span>
             <span>Quantity</span>
             <span>
                 Amount
-                <i class="fa-solid fa-caret-down"></i>
+                <i class="sort-icon fa-solid fa-caret-down"></i>
             </span>
             <span>
                 Order Status
-                <i class="fa-solid fa-caret-down"></i>
+                <i class="sort-icon fa-solid fa-caret-down"></i>
             </span>
             <span>
                 Phone
-                <i class="fa-solid fa-caret-down"></i>
+                <i class="sort-icon fa-solid fa-caret-down"></i>
             </span>
         </div>
-        <!-- <div class="pagination">
-            <span>Showing 1-30 / 150 Results</span>
-            <div class="pagination-control">
-                <a href="#" class="page-link prev">Previous</a>
-                <a href="#" class="page-link number active">1</a>
-                <a href="#" class="page-link number">2</a>
-                <a href="#" class="page-link number">3</a>
-                <a href="#" class="page-link next">Next</a>
+        <div id="layout-rows" class="layout-rows">
+            <div class="order">
+                <input type="checkbox" name="" id="">
+                <span>#110</span>
+                <img class="item-img" src="../img/cheese-pizza.jpg" alt="">
+                <span>Cheese Pizza</span>
+                <span>Mark Willy</span>
+                <input type="text" name="" id="">
+                <span>$2,950</span>
+                <span>Confirmed</span>
+                <span>+01024496433</span>
+                <i id="header-control-icon" class="fa-solid fa-ellipsis"></i>
             </div>
-        </div> -->
+        </div>
     </main>
 </body>
 <script>
 
     registerHeaderCallbacks();
     registerSearchFormCallbacks();
+    registerOrdersHeaderCallbacks();
 
     function registerHeaderCallbacks() {
         let menuIcon = document.getElementById("header-control-icon");
@@ -97,5 +102,22 @@
             searchForm.querySelectorAll("input[type='text']").forEach(field => field.value = '');
         }
     }
+
+    function registerOrdersHeaderCallbacks() {
+        document.querySelectorAll("#orders-header .sort-icon").forEach(icon => {
+            icon.onclick = () => icon.classList.toggle("reverse-sort")
+        });
+    }
 </script>
 </html>
+
+<!-- <div class="pagination">
+            <span>Showing 1-30 / 150 Results</span>
+            <div class="pagination-control">
+                <a href="#" class="page-link prev">Previous</a>
+                <a href="#" class="page-link number active">1</a>
+                <a href="#" class="page-link number">2</a>
+                <a href="#" class="page-link number">3</a>
+                <a href="#" class="page-link next">Next</a>
+            </div>
+        </div> -->

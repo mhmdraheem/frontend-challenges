@@ -16,59 +16,101 @@
     <header>
         <h1>Orders List</h1>
         <i id="header-control-icon" class="header-control-icon fa-solid fa-ellipsis">
-            <ul id="header-control-menu" class="control-menu">
-                <li class="control-menu-item">Option #1</li>
-                <li class="control-menu-item">Option #2</li>
-                <li class="control-menu-item">Option #3</li>
-                <li class="control-menu-item">Option #4</li>
+            <ul id="header-control-menu" class="menu">
+                <li class="menu-item">Option #1</li>
+                <li class="menu-item">Option #2</li>
+                <li class="menu-item">Option #3</li>
+                <li class="menu-item">Option #4</li>
             </ul>
         </i>
     </header>
-    <main class="orders-layout">
-        <form id="search-form" class="search-bar" action="#">
+    <main>
+        <form id="search-form" class="row search-bar" action="#">
             <input type="text" id="invoice-search" name="invoice-search" placeholder="Invoice Search">
             <input type="text" id="name-search" name="name-search" placeholder="Search by Name">
             <input type="text" id="phone-search" name="phone-search" placeholder="Search by Phone">
             <input type="submit" value="Search">
         </form>
-        <div id="layout-header" class="layout-header">
-            <input type="checkbox" name="check-all" id="check-all">
-            <span>Invoice</span>
-            <span>Image</span>
-            <span>
-                Menu
-                <i class="sort-icon fa-solid fa-caret-down"></i>
-            </span>
-            <span>
-                Customer Name
-                <i class="sort-icon fa-solid fa-caret-down"></i>
-            </span>
-            <span>Quantity</span>
-            <span>
-                Amount
-                <i class="sort-icon fa-solid fa-caret-down"></i>
-            </span>
-            <span>
-                Order Status
-                <i class="sort-icon fa-solid fa-caret-down"></i>
-            </span>
-            <span>
-                Phone
-                <i class="sort-icon fa-solid fa-caret-down"></i>
-            </span>
+        <div id="orders-header" class="row orders-header">
+            <div class="cell-3-col">
+                <input type="checkbox" name="select-all" id="select-all">
+                <span>Invoice</span>
+                <span>Image</span>
+            </div>
+            <div class="cell-3-col">
+                <span class="sortable">Menu<i class="sort-icon fa-solid fa-caret-down"></i></span>
+                <span class="sortable">Customer Name<i class="sort-icon fa-solid fa-caret-down"></i></span>
+                <span>Quantity</span>
+            </div>
+            <div class="cell-3-col">
+                <span class="sortable">Amount<i class="sort-icon fa-solid fa-caret-down"></i></span>
+                <span class="sortable">Order Status<i class="sort-icon fa-solid fa-caret-down"></i></span>
+                <span class="sortable">Phone<i class="sort-icon fa-solid fa-caret-down"></i></span>
+            </div>
+            <div class="cell-1-col"></div>
         </div>
-        <div id="layout-rows" class="layout-rows">
-            <div class="order">
-                <input type="checkbox" name="" id="">
-                <span>#110</span>
-                <img class="item-img" src="../img/cheese-pizza.jpg" alt="">
-                <span>Cheese Pizza</span>
-                <span>Mark Willy</span>
-                <input type="text" name="" id="">
-                <span>$2,950</span>
-                <span>Confirmed</span>
-                <span>+01024496433</span>
-                <i id="header-control-icon" class="fa-solid fa-ellipsis"></i>
+        <div id="orders" class="row orders">
+            <div class="row order">
+                <div class="cell-3-col">
+                    <input type="checkbox">
+                    <span>#110</span>
+                    <img class="item-img" src="../img/cheese-pizza.jpg" alt="">
+                </div>
+                <div class="cell-3-col">
+                    <span>Cheese Pizza</span>
+                    <span>Mark Willy</span>
+                    <input class="quantity" type="text" name="" id="" value="05" disabled>
+                </div>
+                <div class="cell-3-col">
+                    <span>$2,950</span>
+                    <span>Confirmed</span>
+                    <span>+01024496433</span>
+                </div>
+                <i class="order-settings-icon fa-solid fa-ellipsis">
+                    <ul class="menu">
+                        <li class="menu-item del">Delete</li>
+                        <li class="menu-item">Option #2</li>
+                        <li class="menu-item">Option #3</li>
+                        <li class="menu-item">Option #4</li>
+                    </ul>
+                </i>
+            </div>
+            <div class="row order">
+                <div class="cell-3-col">
+                    <input type="checkbox">
+                    <span>#110</span>
+                    <img class="item-img" src="../img/cheese-pizza.jpg" alt="">
+                </div>
+                <div class="cell-3-col">
+                    <span>Cheese Pizza</span>
+                    <span>Mark Willy</span>
+                    <input class="quantity" type="text" name="" id="" value="05" disabled>
+                </div>
+                <div class="cell-3-col">
+                    <span>$2,950</span>
+                    <span>Confirmed</span>
+                    <span>+01024496433</span>
+                </div>
+                <i class="order-settings-icon fa-solid fa-ellipsis">
+                    <ul class="menu">
+                        <li class="menu-item del">Delete</li>
+                        <li class="menu-item">Option #2</li>
+                        <li class="menu-item">Option #3</li>
+                        <li class="menu-item">Option #4</li>
+                    </ul>
+                </i>
+            </div>
+        </div>
+        <div class="footer-row">
+            <div class="pagination">
+                <span>Showing 1-30 / 150 Results</span>
+                <div class="pagination-control">
+                    <a href="#" class="page-link prev">Previous</a>
+                    <a href="#" class="page-link number active">1</a>
+                    <a href="#" class="page-link number">2</a>
+                    <a href="#" class="page-link number">3</a>
+                    <a href="#" class="page-link next">Next</a>
+                </div>
             </div>
         </div>
     </main>
@@ -78,6 +120,7 @@
     registerHeaderCallbacks();
     registerSearchFormCallbacks();
     registerOrdersHeaderCallbacks();
+    registerOrderRowCallbacks();
 
     function registerHeaderCallbacks() {
         let menuIcon = document.getElementById("header-control-icon");
@@ -93,12 +136,7 @@
         let searchForm = document.getElementById("search-form");
         searchForm.onsubmit = (e) => {
             e.preventDefault();
-
             let data = new FormData(searchForm);
-            console.log(data.get('invoice-search'));
-            console.log(data.get('name-search'));
-            console.log(data.get('phone-search'));
-
             searchForm.querySelectorAll("input[type='text']").forEach(field => field.value = '');
         }
     }
@@ -107,17 +145,25 @@
         document.querySelectorAll("#orders-header .sort-icon").forEach(icon => {
             icon.onclick = () => icon.classList.toggle("reverse-sort")
         });
+
+        document.getElementById("select-all").onchange = (e) => {
+            document.querySelectorAll(".orders .row").forEach(row => {
+                row.querySelector("input[type='checkbox']").checked = e.target.checked;
+            })
+        };
+    }
+
+    function registerOrderRowCallbacks() {
+        document.querySelectorAll(".order").forEach(row => {
+
+            row.querySelector(".order-settings-icon").onclick = (e) => {
+                row.querySelector(".menu").classList.toggle("visible");
+            };
+            
+            row.querySelector(".menu .menu-item.del").onclick = (e) => {
+                console.log("delete");
+            };
+        });
     }
 </script>
 </html>
-
-<!-- <div class="pagination">
-            <span>Showing 1-30 / 150 Results</span>
-            <div class="pagination-control">
-                <a href="#" class="page-link prev">Previous</a>
-                <a href="#" class="page-link number active">1</a>
-                <a href="#" class="page-link number">2</a>
-                <a href="#" class="page-link number">3</a>
-                <a href="#" class="page-link next">Next</a>
-            </div>
-        </div> -->

@@ -13,102 +13,50 @@
             box-sizing: border-box;
         }
 
-        .main {
+        body {
             display: grid;
-            grid-template-columns: 200px 1fr 1fr 150px;
-            row-gap: 10px;
+            grid-template-columns: repeat(4, 200px);
         }
 
-        img {
-            display: block;
+        div {
+            height: 200px;
+            position: relative;
+        }
+
+        div:nth-of-type(1) {
+            background-color: red;
+            position: relative;
+        }
+
+        div .nested {
+            width: 50px;
             height: 50px;
-            max-width: 100%;
+            background-color: yellow;
+            position: absolute;
+            top: 0;
+            right: -25px;
+            z-index: 5;
         }
 
-        .row {
-            display: grid;
-            grid-template-columns: 200px 1fr 1fr 150px;
-            grid-column: 1 / span 4;
-            column-gap: 20px;
-            align-items: center;
+        div:nth-of-type(2) {
+            background-color: green;
         }
 
-        .cell-3-col {
-            display: grid;
-            align-items: center;
-            grid-template-columns: 1fr 1fr 1fr;
-            column-gap: 10px;
+        div:nth-of-type(3) {
+            background-color: blue;
         }
 
-        .cell-3-col:first-of-type {
-            grid-template-columns: auto 1fr 1fr;
+        div:nth-of-type(4) {
+            background-color: black;
         }
     </style>
 </head>
 <body>
-    <div class="main">
-        <div class="row form">
-            <input type="text" name="" id="">
-            <input type="text" name="" id="">
-            <input type="text" name="" id="">
-            <input type="submit" value="">
-        </div>
-        <div class="row">
-            <div class="cell-3-col">
-                <input type="checkbox" name="" id="">
-                <span>Invoice</span>
-                <span>Image</span>
-            </div>
-            <div class="cell-3-col">
-                <span>Menu</span>
-                <span>Customer Name</span>
-                <span>Quantity</span>
-            </div>
-            <div class="cell-3-col">
-                <span>Amount</span>
-                <span>Order Status</span>
-                <span>Phone</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="cell-3-col">
-                <input type="checkbox" name="" id="">
-                <span>#1150</span>
-                <img src="../img/tomato-pizza.jpg" alt="">
-            </div>
-            <div class="cell-3-col">
-                <span>Menu</span>
-                <span>Customer Name</span>
-                <span>Quantity</span>
-            </div>
-            <div class="cell-3-col">
-                <span>Amount</span>
-                <span>Order Status</span>
-                <span>Phone</span>
-            </div>
-            <span>Select</span>
-        </div>
-
-
+    <div>
+        <div class="nested"></div>
     </div>
+    <div></div>
+    <div></div>
+    <div></div>
 </body>
 </html>
-
-
-<!-- .cell-3-col :nth-child(1),
-.cell-3-col :nth-child(1),
-.cell-3-col :nth-child(1) {
-    background-color: yellow;
-}
-
-.cell-3-col :nth-child(2),
-.cell-3-col :nth-child(2),
-.cell-3-col :nth-child(2) {
-    background-color: green;
-}
-
-.cell-3-col :nth-child(3),
-.cell-3-col :nth-child(3),
-.cell-3-col :nth-child(3) {
-    background-color: purple;
-} -->

@@ -1,5 +1,5 @@
 :root {
-    --color-purple: #45379E;
+    --color-purple: rgb(69, 55, 158);
     --menu-color: #cdcdcd;
 }
 
@@ -61,6 +61,25 @@ body {
     }
 }
 
+.checkbox-label {
+    margin-left: 5px;
+    border-radius: 3px;
+    width: 15px;
+    height: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+
+    input {
+        display: none;
+    }
+
+    &:has(input:checked) {
+        border: none;
+        background: linear-gradient(90deg, var(--color-purple), #7324A0);
+        box-shadow: 0px 0px 5px 2px rgb(69, 55, 158, 0.3);    
+    }
+}
+
 header {
     height: 70px;
     padding: 20px 0;
@@ -88,6 +107,8 @@ main {
     row-gap: 10px;
     column-gap: 20px;
     align-items: start;
+    // min-width: 1100px;
+    overflow-x: auto;
     height: calc(100vh - 85px);
 
     .row {
@@ -107,12 +128,19 @@ main {
     .cell-3-col {
         display: grid;
         align-items: center;
-        grid-template-columns: 1fr 1fr 1fr;
         column-gap: 10px;
     }
     
-    .cell-3-col:first-of-type {
+    .cell-3-col:nth-of-type(1) {
         grid-template-columns: auto 1fr 1fr;
+    }
+
+    .cell-3-col:nth-of-type(2) {
+        grid-template-columns: minmax(60px, auto) minmax(120px, auto) 1fr;
+    }
+
+    .cell-3-col:nth-of-type(3) {
+        grid-template-columns: minmax(70px, auto) minmax(100px, auto) minmax(70px, auto);
     }
 }
 
@@ -148,6 +176,7 @@ main {
 
     span {
         font-weight: 500;
+        // min-width: 110px;
     }
 
     .sort-icon {
@@ -159,17 +188,13 @@ main {
             transform: rotate(180deg);
         }
     }
-
-    .sortable {
-        display: block;
-    }
 }
 
 .orders {
-    // height: 100%;
+    height: 100%;
     overflow-y: auto;
-    // align-items: start;
-    // grid-template-rows: auto 1fr;
+    align-items: start;
+    grid-auto-rows: max-content;
 }
 
 .order {
@@ -188,11 +213,42 @@ main {
         border: 1px solid #EEEEEE;
     }
 
+    .confirmed, .pending, .failed {
+        width: fit-content;
+        padding: 5px 10px;
+        border-radius: 3px;
+        color: white;
+        font-weight: 400;
+    }
+
+    .confirmed {
+        background-color: #2CE5C0;
+    }
+
+    .pending {
+        background-color: #FFB74D;
+    }
+
+    .failed {
+        background-color: rgb(228, 4, 4);
+    }
+
     .order-settings-icon {
         cursor: pointer;
         margin-left: auto;
         position: relative;
         align-self: center;
+        font-size: 17px;
+    }
+
+    .flipped-menu {
+        bottom: initial;
+        top: -5px;
+        transform: translateY(-100%);        
+    }
+
+    .menu-item {
+        padding: 15px 10px;
     }
 
     .menu-item.del:hover {

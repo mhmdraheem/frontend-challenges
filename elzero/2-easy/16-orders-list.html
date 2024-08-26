@@ -33,7 +33,9 @@
         </form>
         <div id="orders-header" class="row orders-header">
             <div class="cell-3-col">
-                <input type="checkbox" name="select-all" id="select-all">
+                <label class="checkbox-label" for="select-all">
+                    <input type="checkbox" class="select-all" id="select-all">
+                </label>
                 <span>Invoice</span>
                 <span>Image</span>
             </div>
@@ -52,7 +54,9 @@
         <div id="orders" class="row orders">
             <div class="row order">
                 <div class="cell-3-col">
-                    <input type="checkbox">
+                    <label class="checkbox-label" for="order-checkbox">
+                        <input type="checkbox" class="order-checkbox" id="order-checkbox">
+                    </label>
                     <span>#110</span>
                     <img class="item-img" src="../img/cheese-pizza.jpg" alt="">
                 </div>
@@ -63,32 +67,7 @@
                 </div>
                 <div class="cell-3-col">
                     <span>$2,950</span>
-                    <span>Confirmed</span>
-                    <span>+01024496433</span>
-                </div>
-                <i class="order-settings-icon fa-solid fa-ellipsis">
-                    <ul class="menu">
-                        <li class="menu-item del">Delete</li>
-                        <li class="menu-item">Option #2</li>
-                        <li class="menu-item">Option #3</li>
-                        <li class="menu-item">Option #4</li>
-                    </ul>
-                </i>
-            </div>
-            <div class="row order">
-                <div class="cell-3-col">
-                    <input type="checkbox">
-                    <span>#110</span>
-                    <img class="item-img" src="../img/cheese-pizza.jpg" alt="">
-                </div>
-                <div class="cell-3-col">
-                    <span>Cheese Pizza</span>
-                    <span>Mark Willy</span>
-                    <input class="quantity" type="text" name="" id="" value="05" disabled>
-                </div>
-                <div class="cell-3-col">
-                    <span>$2,950</span>
-                    <span>Confirmed</span>
+                    <span class="pending">Pending</span>
                     <span>+01024496433</span>
                 </div>
                 <i class="order-settings-icon fa-solid fa-ellipsis">
@@ -155,13 +134,20 @@
 
     function registerOrderRowCallbacks() {
         document.querySelectorAll(".order").forEach(row => {
-
             row.querySelector(".order-settings-icon").onclick = (e) => {
-                row.querySelector(".menu").classList.toggle("visible");
+                let menu = row.querySelector(".menu");
+                menu.classList.toggle("visible");
+
+                let menuRect = menu.getBoundingClientRect();
+                let ordersRect = document.querySelector(".orders").getBoundingClientRect();
+                if(menuRect.bottom > ordersRect.bottom) {
+                    console.log("Overflow", menuRect, ordersRect);
+                    menu.classList.toggle("flipped-menu");
+                }
             };
             
             row.querySelector(".menu .menu-item.del").onclick = (e) => {
-                console.log("delete");
+                row.remove();
             };
         });
     }

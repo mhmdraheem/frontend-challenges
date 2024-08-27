@@ -96,45 +96,15 @@ header .header-control-icon {
 
 main {
   display: grid;
-  grid-template-columns: 200px 1fr 1fr 100px;
-  grid-template-rows: auto auto 1fr auto;
-  row-gap: 10px;
-  column-gap: 20px;
-  align-items: start;
-  overflow-x: auto;
-  height: calc(100vh - 85px);
-}
-main .row {
-  display: grid;
-  grid-template-columns: 200px 1fr 1fr 100px;
-  grid-column: 1/span 4;
-  column-gap: 20px;
-}
-main .footer-row {
-  display: grid;
   grid-template-columns: 1fr;
-  grid-column: 1/span 4;
-  align-items: center;
-}
-main .cell-3-col {
-  display: grid;
-  align-items: center;
-  column-gap: 10px;
-}
-main .cell-3-col:nth-of-type(1) {
-  grid-template-columns: auto 1fr 1fr;
-}
-main .cell-3-col:nth-of-type(2) {
-  grid-template-columns: minmax(60px, auto) minmax(120px, auto) 1fr;
-}
-main .cell-3-col:nth-of-type(3) {
-  grid-template-columns: minmax(70px, auto) minmax(100px, auto) minmax(70px, auto);
+  grid-template-rows: auto auto 1fr auto;
+  height: calc(100vh - 85px);
 }
 
 .search-bar {
   display: grid;
   grid-template-columns: 200px 1fr 1fr 100px;
-  grid-column: 1/span 4;
+  column-gap: 10px;
 }
 .search-bar input {
   border: none;
@@ -155,7 +125,12 @@ main .cell-3-col:nth-of-type(3) {
 }
 
 .orders-header {
+  display: grid;
+  grid-template-columns: auto repeat(9, 1fr);
+  column-gap: 10px;
+  align-items: center;
   padding: 10px 0;
+  margin-top: 10px;
   border-bottom: 2px solid #EEEEEE;
 }
 .orders-header span {
@@ -171,15 +146,16 @@ main .cell-3-col:nth-of-type(3) {
 }
 
 .orders {
-  height: 100%;
-  overflow-y: auto;
-  align-items: start;
-  grid-auto-rows: max-content;
+  overflow: hidden;
 }
 
 .order {
-  padding: 10px 0;
+  display: grid;
+  grid-template-columns: auto repeat(9, 1fr);
+  column-gap: 10px;
+  align-items: center;
   border-bottom: 1px solid #EEEEEE;
+  height: 60px;
 }
 .order .item-img {
   height: 35px;
@@ -225,8 +201,12 @@ main .cell-3-col:nth-of-type(3) {
 .order .menu-item.del:hover {
   background-color: rgb(228, 4, 4);
 }
+.order.order-filtered, .order.name-filtered, .order.phone-filtered {
+  display: none;
+}
 
 .pagination {
+  height: 40px;
   display: flex;
   align-items: center;
 }

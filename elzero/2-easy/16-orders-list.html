@@ -25,81 +25,165 @@
         </i>
     </header>
     <main>
-        <form id="search-form" class="row search-bar" action="#">
+        <form id="search-form" class="search-bar" action="#">
             <input type="text" id="invoice-search" name="invoice-search" placeholder="Invoice Search">
-            <input type="text" id="name-search" name="name-search" placeholder="Search by Name">
+            <input type="text" id="name-search" name="name-search" placeholder="Search by Customer Name">
             <input type="text" id="phone-search" name="phone-search" placeholder="Search by Phone">
             <input type="submit" value="Search">
         </form>
-        <div id="orders-header" class="row orders-header">
-            <div class="cell-3-col">
-                <label class="checkbox-label" for="select-all">
-                    <input type="checkbox" class="select-all" id="select-all">
-                </label>
-                <span>Invoice</span>
-                <span>Image</span>
-            </div>
-            <div class="cell-3-col">
-                <span class="sortable">Menu<i class="sort-icon fa-solid fa-caret-down"></i></span>
-                <span class="sortable">Customer Name<i class="sort-icon fa-solid fa-caret-down"></i></span>
-                <span>Quantity</span>
-            </div>
-            <div class="cell-3-col">
-                <span class="sortable">Amount<i class="sort-icon fa-solid fa-caret-down"></i></span>
-                <span class="sortable">Order Status<i class="sort-icon fa-solid fa-caret-down"></i></span>
-                <span class="sortable">Phone<i class="sort-icon fa-solid fa-caret-down"></i></span>
-            </div>
-            <div class="cell-1-col"></div>
+        <div id="orders-header" class="orders-header">
+            <label class="checkbox-label" for="select-all">
+                <input type="checkbox" class="select-all" id="select-all">
+            </label>
+            <span>Invoice</span>
+            <span>Image</span>
+            <span>Menu<i class="sort-icon fa-solid fa-caret-down"></i></span>
+            <span>Customer Name<i class="sort-icon fa-solid fa-caret-down"></i></span>
+            <span>Quantity</span>
+            <span>Amount<i class="sort-icon fa-solid fa-caret-down"></i></span>
+            <span>Order Status<i class="sort-icon fa-solid fa-caret-down"></i></span>
+            <span>Phone<i class="sort-icon fa-solid fa-caret-down"></i></span>
         </div>
-        <div id="orders" class="row orders">
-            <div class="row order">
-                <div class="cell-3-col">
-                    <label class="checkbox-label" for="order-checkbox">
-                        <input type="checkbox" class="order-checkbox" id="order-checkbox">
-                    </label>
-                    <span>#110</span>
-                    <img class="item-img" src="../img/cheese-pizza.jpg" alt="">
-                </div>
-                <div class="cell-3-col">
-                    <span>Cheese Pizza</span>
-                    <span>Mark Willy</span>
-                    <input class="quantity" type="text" name="" id="" value="05" disabled>
-                </div>
-                <div class="cell-3-col">
-                    <span>$2,950</span>
-                    <span class="pending">Pending</span>
-                    <span>+01024496433</span>
-                </div>
-                <i class="order-settings-icon fa-solid fa-ellipsis">
-                    <ul class="menu">
-                        <li class="menu-item del">Delete</li>
-                        <li class="menu-item">Option #2</li>
-                        <li class="menu-item">Option #3</li>
-                        <li class="menu-item">Option #4</li>
-                    </ul>
-                </i>
-            </div>
+        <div id="orders" class="orders">
         </div>
-        <div class="footer-row">
-            <div class="pagination">
-                <span>Showing 1-30 / 150 Results</span>
-                <div class="pagination-control">
-                    <a href="#" class="page-link prev">Previous</a>
-                    <a href="#" class="page-link number active">1</a>
-                    <a href="#" class="page-link number">2</a>
-                    <a href="#" class="page-link number">3</a>
-                    <a href="#" class="page-link next">Next</a>
-                </div>
+        <div class="pagination">
+            <span>Showing 1-30 / 150 Results</span>
+            <div class="pagination-control">
+                <a href="#" class="page-link prev">Previous</a>
+                <a href="#" class="page-link number active">1</a>
+                <a href="#" class="page-link number">2</a>
+                <a href="#" class="page-link number">3</a>
+                <a href="#" class="page-link next">Next</a>
             </div>
         </div>
     </main>
 </body>
 <script>
-
+    populateOrdersPage(1);
     registerHeaderCallbacks();
     registerSearchFormCallbacks();
     registerOrdersHeaderCallbacks();
     registerOrderRowCallbacks();
+    registerPaginationCallbacks();
+
+    function populateOrdersPage(page) {
+        const pageSize = 7;
+
+        // clear the orders list first
+        Array.from(document.querySelector(".orders").childNodes).forEach(row => row.remove());
+        
+        for(let i = (pageSize * (page - 1)) + 1; i <= pageSize * page; i++) {
+            createOrder({
+                orderNumber: i,
+                imageUrl: '../img/tomato-pizza.jpg',
+                itemName: 'Tomato Pizza',
+                customerName: 'Mark Willy',
+                quantity: (i + '').padStart(3, "0"),
+                price: 2950,
+                status: ['Pending', 'Confirmed', 'Failed'][getRandomInt(3)],
+                phoneNumber: '+01024496433',
+                menuOptions: ['Delete', 'Option #2', 'Option #3', 'Option #4']
+            });
+        }
+    }
+
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+    }
+
+    function createOrder(orderData) {
+        // Create order div
+        const orderDiv = document.createElement('div');
+        orderDiv.classList.add('order');
+
+        // Create checkbox label
+        const label = document.createElement('label');
+        label.classList.add('checkbox-label');
+        label.setAttribute('for', 'order-checkbox');
+
+        const inputCheckbox = document.createElement('input');
+        inputCheckbox.type = 'checkbox';
+        inputCheckbox.classList.add('order-checkbox');
+        inputCheckbox.id = 'order-checkbox';
+
+        label.appendChild(inputCheckbox);
+
+        // Create order element
+        const orderNumber = document.createElement('span');
+        orderNumber.textContent = `# ${orderData.orderNumber}`;
+        orderNumber.id = 'order';
+
+        // Create img element
+        const itemImg = document.createElement('img');
+        itemImg.classList.add('item-img');
+        itemImg.src = orderData.imageUrl;
+        itemImg.alt = '';
+
+        // Create item name span
+        const itemName = document.createElement('span');
+        itemName.textContent = orderData.itemName;
+
+        // Create customer name span
+        const customerName = document.createElement('span');
+        customerName.textContent = orderData.customerName;
+        customerName.id = 'customer-name';
+
+        // Create quantity input
+        const quantityInput = document.createElement('input');
+        quantityInput.classList.add('quantity');
+        quantityInput.type = 'text';
+        quantityInput.value = orderData.quantity;
+        quantityInput.disabled = true;
+
+        // Create price span
+        const priceSpan = document.createElement('span');
+        priceSpan.textContent = `$${orderData.price.toLocaleString()}`;
+
+        // Create order status span
+        const statusSpan = document.createElement('span');
+        statusSpan.classList.add(orderData.status.toLowerCase());
+        statusSpan.textContent = orderData.status;
+
+        // Create phone number span
+        const phoneNumber = document.createElement('span');
+        phoneNumber.textContent = orderData.phoneNumber;
+        phoneNumber.id = 'phone';
+
+        // Create settings icon and dropdown menu
+        const settingsIcon = document.createElement('i');
+        settingsIcon.classList.add('order-settings-icon', 'fa-solid', 'fa-ellipsis');
+
+        const menu = document.createElement('ul');
+        menu.classList.add('menu');
+
+        const menuItems = orderData.menuOptions.map(option => {
+            const menuItem = document.createElement('li');
+            menuItem.classList.add('menu-item');
+            if (option === 'Delete') {
+                menuItem.classList.add('del');
+            }
+            menuItem.textContent = option;
+            return menuItem;
+        });
+
+        menuItems.forEach(item => menu.appendChild(item));
+        settingsIcon.appendChild(menu);
+
+        // Append all elements to orderDiv
+        orderDiv.appendChild(label);
+        orderDiv.appendChild(orderNumber);
+        orderDiv.appendChild(itemImg);
+        orderDiv.appendChild(itemName);
+        orderDiv.appendChild(customerName);
+        orderDiv.appendChild(quantityInput);
+        orderDiv.appendChild(priceSpan);
+        orderDiv.appendChild(statusSpan);
+        orderDiv.appendChild(phoneNumber);
+        orderDiv.appendChild(settingsIcon);
+
+        // Append orderDiv to orders container
+        document.querySelector(".orders").appendChild(orderDiv);
+    }
 
     function registerHeaderCallbacks() {
         let menuIcon = document.getElementById("header-control-icon");
@@ -116,7 +200,32 @@
         searchForm.onsubmit = (e) => {
             e.preventDefault();
             let data = new FormData(searchForm);
-            searchForm.querySelectorAll("input[type='text']").forEach(field => field.value = '');
+            
+            document.querySelectorAll(".order").forEach(order => {
+                let orderSpanContent = order.querySelector("#order").innerText;
+                let invoiceSearchTerm = data.get("invoice-search");
+                if(invoiceSearchTerm && !new RegExp(invoiceSearchTerm, "i").test(orderSpanContent)) {
+                    order.classList.add("order-filtered");
+                } else {
+                    order.classList.remove("order-filtered");
+                }
+
+                let customerNameSpanContent = order.querySelector("#customer-name").innerText;
+                let nameSearchTerm = data.get("name-search");
+                if(nameSearchTerm && !new RegExp(nameSearchTerm, "i").test(customerNameSpanContent)) {
+                    order.classList.add("name-filtered");
+                } else {
+                    order.classList.remove("name-filtered");
+                }
+
+                let phoneSpanContent = order.querySelector("#phone").innerText;
+                let phoneSearchTerm = data.get("phone-search");
+                if(phoneSearchTerm && !new RegExp(phoneSearchTerm, "i").test(phoneSpanContent)) {
+                    order.classList.add("phone-filtered");
+                } else {
+                    order.classList.remove("phone-filtered");
+                }
+            });
         }
     }
 
@@ -126,7 +235,7 @@
         });
 
         document.getElementById("select-all").onchange = (e) => {
-            document.querySelectorAll(".orders .row").forEach(row => {
+            document.querySelectorAll(".order").forEach(row => {
                 row.querySelector("input[type='checkbox']").checked = e.target.checked;
             })
         };
@@ -148,6 +257,16 @@
             
             row.querySelector(".menu .menu-item.del").onclick = (e) => {
                 row.remove();
+            };
+        });
+    }
+
+    function registerPaginationCallbacks() {
+        document.querySelectorAll(".page-link.number").forEach(link => {
+            link.onclick = () => {
+                document.querySelector(".page-link.number.active").classList.remove("active");
+                link.classList.add("active");
+                populateOrdersPage(link.innerText);
             };
         });
     }

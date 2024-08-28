@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Card</title>
+    <link rel="stylesheet" href="../sources/normalize.css">
+    <style>
+        :root {
+            --golden: #FFA500;
+            --purle: #E91E63;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        div {
+            width: 800px;
+            height: 250px;
+            margin: 50px 0  0 50px;
+            border-style: solid;
+            border-color: var(--purle);
+            border-width: 5px 50px 5px 125px;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        div::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -250px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-color: transparent white transparent transparent;
+            border-width: 120px 125px;
+        }
+
+        div::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-color: transparent var(--purle) transparent transparent;
+            border-width: 120px;
+        }
+
+        p {
+            margin-left: 100px;
+            position: relative;
+        }
+
+        p::before {
+            content: "Osama Elzero";
+            position: absolute;
+            top: 50%;
+            left: -10px;
+            transform: translate(-100%, -50%);
+            color: white;
+            padding: 10px;
+            background-color: var(--purle);
+        }
+
+        p::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -300px;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            background-color: var(--golden);
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p>Elzero Web School</p>
+    </div>
+</body>
+</html>

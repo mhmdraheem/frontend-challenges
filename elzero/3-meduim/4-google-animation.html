@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Animation</title>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: "Roboto", sans-serif;
+            font-style: normal;
+        }
+
+        :root {
+            --blue: #4285F4;
+            --red: #EA4335;
+            --yellow: #FBBC05;
+            --green: #34A853;
+
+            --shape-width: 400px;
+            --shape-height: 80px;
+        }
+
+        .screen-centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .outer {
+            width: var(--shape-width);
+            height: var(--shape-height);
+            border-radius: var(--shape-height);
+
+            padding: 5px;
+            background-color: orange;
+            overflow: hidden;
+        }
+
+        .outer::before {
+            content: "";
+            position: absolute;
+            top: calc(50% - (var(--shape-width) / 2));
+            left: calc(50% - (var(--shape-width) / 2));
+
+            border-radius: 50%;
+            width: var(--shape-width);
+            height: var(--shape-width);
+
+            background: conic-gradient(
+                var(--blue) 0deg, var(--blue) 90deg,
+                var(--red) 90deg, var(--red) 180deg, 
+                var(--yellow) 180deg, var(--yellow) 270deg, 
+                var(--green) 270deg, var(--green) 360deg
+            );
+            
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .inner {
+            height: 100%;
+            font-weight: 500;
+            font-size: 25px;
+            background-color: white;
+            border-radius: var(--shape-height);
+            
+            position: relative;
+            z-index: 2;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer screen-centered">
+        <div class="inner">Google</div>
+    </div>
+</body>
+</html>

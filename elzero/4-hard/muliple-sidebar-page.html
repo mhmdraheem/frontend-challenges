@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Sidebar Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/9b220e24a6.js" crossorigin="anonymous"></script>
+    <script src="../sources/moment.js"></script>
+    <link rel="stylesheet" href="../sources/normalize.css">
+    <link rel="stylesheet" href="multiple-sidebar-page.css">
+</head>
+<body>
+    <aside class="left-nav">
+        <form class="search card" action="#">
+            <input type="text" name="search-text" placeholder="Search">
+            <input type="submit" value="Search">
+        </form>
+        <div class="card">
+            <h5 class="card-head">Members</h5>
+            <div class="card-body">
+                <div class="tags">
+                    <span class="tag">Newest</span>
+                    <span class="tag">Active</span>
+                    <span class="tag active">Popular</span>
+                </div>
+                <div class="profile">
+                    <img src="../img/cat.png" alt="">
+                    <div class="details">
+                        <div class="name">Renee Gomez</div>
+                        <div class="description">14 friends</div>
+                    </div>
+                </div>
+                <div class="profile">
+                    <img src="../img/cat.png" alt="">
+                    <div class="details">
+                        <div class="name">Renee Gomez</div>
+                        <div class="description">14 friends</div>
+                    </div>
+                </div>
+                <div class="profile">
+                    <img src="../img/cat.png" alt="">
+                    <div class="details">
+                        <div class="name">Renee Gomez</div>
+                        <div class="description">14 friends</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h5 class="card-head">Groups</h5>
+            <div class="card-body">
+                <div class="tags">
+                    <span class="tag">Newest</span>
+                    <span class="tag active">Active</span>
+                    <span class="tag">Popular</span>
+                    <span class="tag">Alphapitical</span>
+                </div>
+                <div class="profile">
+                    <img src="../img/cat.png" alt="">
+                    <div class="details">
+                        <div class="name">The Tourist</div>
+                        <div class="description">active 3 years, 8 months ago</div>
+                    </div>
+                </div>
+                <div class="profile">
+                    <img src="../img/cat.png" alt="">
+                    <div class="details">
+                        <div class="name">The Social Network</div>
+                        <div class="description">active 3 years, 8 months ago</div>
+                    </div>
+                </div>
+                <div class="profile">
+                    <img src="../img/cat.png" alt="">
+                    <div class="details">
+                        <div class="name">Monsters, Inc.</div>
+                        <div class="description">active 4 years, 7 months ago</div>
+                    </div>
+                </div>
+                <div class="profile">
+                    <img src="../img/cat.png" alt="">
+                    <div class="details">
+                        <div class="name">Elizabithan</div>
+                        <div class="description">active 4 years, 7 months ago</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card recently-active">
+            <h5 class="card-head">Recently Active Members</h5>
+            <div class="card-body">
+                <div class="profile">
+                    <img src="../img/cat.png" alt="">
+                </div>
+                <div class="profile">
+                    <img src="../img/cat.png" alt="">
+                </div>
+                <div class="profile">
+                    <img src="../img/cat.png" alt="">
+                </div>
+                <div class="profile">
+                    <img src="../img/cat.png" alt="">
+                </div>
+                <div class="profile">
+                    <img src="../img/cat.png" alt="">
+                </div>
+                <div class="profile">
+                    <img src="../img/cat.png" alt="">
+                </div>
+                <div class="profile">
+                    <img src="../img/cat.png" alt="">
+                </div>
+                <div class="profile">
+                    <img src="../img/cat.png" alt="">
+                </div>
+                <div class="profile">
+                    <img src="../img/cat.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="card schedule">
+            <h5 class="card-head">The Schedule</h5>
+            <div class="card-body">
+                <div class="date"></div>
+                <div class="days-of-week">
+                    <span class="day-of-week">M</span>
+                    <span class="day-of-week">T</span>
+                    <span class="day-of-week">W</span>
+                    <span class="day-of-week">S</span>
+                    <span class="day-of-week">T</span>
+                    <span class="day-of-week">F</span>
+                    <span class="day-of-week">S</span>
+                </div>
+                <div class="days"></div>
+                <div class="prev-month">
+                    <i class="fa-solid fa-angles-left"></i> 
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <main>
+        <form class="search card" action="#">
+            <input type="text" name="search-text" placeholder="Search">
+            <input type="submit" value="Search">
+        </form>
+        <div class="hero-img"></div>
+        <div class="card latest-activity">
+            <h5 class="card-head">Latest Activity</h5>
+            <div class="card-body">
+                <div class="activity">
+                    <img src="../img/cat.png" alt="">
+                    <div class="details">
+                        <div class="head">
+                            <span class="member-name">Michillie Johnes</span> 
+                            posted an update in the group 
+                            <span class="group-name">The Social Network</span>
+                        </div>
+                        <div class="date">4 years, 3 months ago</div>
+                        <div class="summary secondary-text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Architecto saepe, asperiores voluptatum labore ipsum pariatur temp
+                        </div>
+                    </div>
+                </div>
+                <div class="activity">
+                    <img src="../img/cat.png" alt="">
+                    <div class="details">
+                        <div class="head">
+                            <span class="member-name">Monta Ellis</span> 
+                            posted an update in the group 
+                            <span class="group-name">The Tourist</span>
+                        </div>
+                        <div class="date">4 years, 3 months ago</div>
+                        <div class="summary secondary-text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Architecto saepe, asperiores voluptatum labore ipsum pariatur temp
+                        </div>
+                    </div>
+                </div>
+                <div class="activity">
+                    <img src="../img/cat.png" alt="">
+                    <div class="details">
+                        <div class="head">
+                            <span class="member-name">Picabo Street</span> 
+                            posted an update in the group 
+                            <span class="group-name">Monsters, Inc</span>
+                        </div>
+                        <div class="date">4 years, 3 months ago</div>
+                        <div class="summary secondary-text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Tenetur suscipit nulla necessitatibus minima nihil perspiciatis eligendi recusandae. 
+                            Molestias nam, cum veritatis illo tempore ullam eos repudiandae exercitationem maxime dolore vel!
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas earum eius inventore veritatis quo, 
+                            quasi necessitatibus atque praesentium blanditiis magni exercitationem rem aliquam odio porro,
+                             iusto saepe possimus voluptates molestiae ... <a href="#">[Read More]</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="activity">
+                    <img src="../img/cat.png" alt="">
+                    <div class="details">
+                        <div class="head">
+                            <span class="member-name">MaliVali Washington</span> 
+                            posted an update
+                        </div>
+                        <div class="date">4 years, 3 months ago</div>
+                        <div class="summary secondary-text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Architecto saepe, asperiores voluptatum labore ipsum pariatur temp
+                        </div>
+                    </div>
+                </div>
+                <div class="activity">
+                    <img src="../img/cat.png" alt="">
+                    <div class="details">
+                        <div class="head">
+                            <span class="member-name">Seamus</span> 
+                            posted an update
+                        </div>
+                        <div class="date">4 years, 3 months ago</div>
+                        <div class="summary secondary-text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Architecto saepe, asperiores voluptatum labore ipsum pariatur temp
+                        </div>
+                    </div>
+                </div>
+                <button class="more-activity">Load More</button>
+            </div>
+        </div>
+        <div class="card latest-posts">
+            <h5 class="card-head">Latest Posts</h5>
+            <div class="card-body">
+                <div class="post">
+                    <img src="../img/cat.png" alt="">
+                    <div class="details">
+                        <div class="head">Dynamically provide access to interoperable</div>
+                        <div class="summary secondary-text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Quam earum vero dignissimos commodi itaque sapiente numquam aliquam beatae, 
+                            velit blanditiis minus nihil id sunt eos! Et harum tempore accusamus culpa? ...
+                            <a href="#">
+                                <i class="fa-solid fa-angles-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="post">
+                    <img src="../img/cat.png" alt="">
+                    <div class="details">
+                        <div class="head">Dynamically provide access to interoperable</div>
+                        <div class="summary secondary-text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Quam earum vero dignissimos commodi itaque sapiente numquam aliquam beatae, 
+                            velit blanditiis minus nihil id sunt eos! Et harum tempore accusamus culpa? ...
+                            <a href="#">
+                                <i class="fa-solid fa-angles-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="post">
+                    <img src="../img/cat.png" alt="">
+                    <div class="details">
+                        <div class="head">Dynamically provide access to interoperable</div>
+                        <div class="summary secondary-text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Quam earum vero dignissimos commodi itaque sapiente numquam aliquam beatae, 
+                            velit blanditiis minus nihil id sunt eos! Et harum tempore accusamus culpa? ...
+                            <a href="#">
+                                <i class="fa-solid fa-angles-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider">
+                    <span class="active">1</span>
+                    <span>2</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+        </div>
+        <div class="card features">
+            <h5 class="card-head">The Features</h5>
+            <div class="card-body">
+                <figure>
+                    <img src="../img/megaman.png" alt="">
+                    <figcaption>professionally pursue world-class applications</figcaption>
+                </figure>
+                <figure>
+                    <img src="../img/megaman.png" alt="">
+                    <figcaption>professionally pursue world-class applications</figcaption>
+                </figure>
+                <figure>
+                    <img src="../img/megaman.png" alt="">
+                    <figcaption>professionally pursue world-class applications</figcaption>
+                </figure>
+                <figure>
+                    <img src="../img/megaman.png" alt="">
+                    <figcaption>professionally pursue world-class applications</figcaption>
+                </figure>
+            </div>
+        </div>
+    </main>
+    <aside class="right-nav">
+        <div class="card sign-in-form">
+            <h5 class="card-head">Sign In</h5>
+            <div class="card-body">
+                <form action="#">
+                    <input type="text" name="username" placeholder="username or email">
+                    <input type="text" name="password" placeholder="password">
+                    <div>
+                        <input type="checkbox" id="remeber-me" name="remeber-me" checked>
+                        <label class="secondary-text" for="remeber-me">Remember me</label>
+                    </div>
+                    <input type="submit" value="Sign in">
+                </form>
+                <div class="lost-password">
+                    <i class="fa-solid fa-circle-question"></i>
+                    <a href="#">Lost password</a>
+                </div>
+            </div>
+        </div>
+        <div class="card statistics">
+            <h5 class="card-head">Statistics</h5>
+            <div class="card-body">
+                <div class="stat">
+                    <i class="fa-solid fa-pen"></i>
+                    <span class="name">Posts</span>
+                    <span class="count">6</span>
+                </div>
+                <div class="stat">
+                    <i class="fa-regular fa-comments"></i>
+                    <span class="name">Commments</span>
+                    <span class="count">8</span>
+                </div>
+                <div class="stat">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span class="name">Activity</span>
+                    <span class="count">76</span>
+                </div>
+                <div class="stat">
+                    <i class="fa-regular fa-user"></i>
+                    <span class="name">Members</span>
+                    <span class="count">31</span>
+                </div>
+                <div class="stat">
+                    <i class="fa-solid fa-users"></i>
+                    <span class="name">Groups</span>
+                    <span class="count">6</span>
+                </div>
+                <div class="stat">
+                    <i class="fa-solid fa-comment"></i>
+                    <span class="name">Forums</span>
+                    <span class="count">7</span>
+                </div>
+                <div class="stat">
+                    <i class="fa-solid fa-comment"></i>
+                    <span class="name">Topics</span>
+                    <span class="count">7</span>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h5 class="card-head">Who's Online</h5>
+            <div class="card-body">
+                There are no users currently online
+            </div>
+        </div>
+        <div class="card recent-replies">
+            <h5 class="card-head">Recent Replies</h5>
+            <div class="card-body">
+                <div class="reply">
+                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia</span>
+                    <span class="secondary-text">4 years ago</span>
+                </div>
+                <div class="reply">
+                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate deleniti voluptatibus culpa exercitationem a id, molestias adipisci dol</span>
+                    <span class="secondary-text">4 years, 7 months ago</span>
+                </div>
+                <div class="reply">
+                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate deleniti voluptat</span>
+                    <span class="secondary-text">4 years, 7 months ago</span>
+                </div>
+            </div>
+        </div>
+        <div class="card recent-topics">
+            <h5 class="card-head">Recent Topics</h5>
+            <div class="card-body">
+                <div class="topic">
+                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia</span>
+                    <span class="secondary-text">by</span>
+                    <span>Michele Johnes</span>
+                    <span class="secondary-text">4 years ago</span>
+                </div>
+                <div class="topic">
+                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate deleniti voluptatibus culpa exercitationem a id, molestias adipisci dol</span>
+                    <span class="secondary-text">by</span>
+                    <span>Michele Johnes</span>
+                    <span class="secondary-text">4 years, 7 months ago</span>
+                </div>
+                <div class="topic">
+                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate deleniti voluptat</span>
+                    <span class="secondary-text">by</span>
+                    <span>Michele Johnes</span>
+                    <span class="secondary-text">4 years, 7 months ago</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+</body>
+<script>
+    registerTagClicksCallbacks();
+    renderCalender();
+
+    async function registerTagClicksCallbacks() {
+        document.querySelectorAll(".tags").forEach(tags => {
+            tags.querySelectorAll(".tag").forEach(tag => {
+                tag.onclick = () => {
+                    tags.querySelector(".tag.active").classList.remove("active");
+                    tag.classList.add("active");
+                }
+            });
+        });
+    }
+
+    async function renderCalender() {
+        let date = new moment();
+        let year = date.year();
+        let monthName = date.format("MMMM");
+        let dayOfMonth = date.format("DD");
+        let prevMonth = date.subtract(1, "month").format("MMM");
+        
+        document.querySelector(".date").innerText = `${monthName} ${year}`;
+        document.querySelector(".prev-month span").innerText = prevMonth;
+
+        let days = document.querySelector(".days");
+        for(let i = 1; i < 30; i++) {
+            let day = document.createElement("span");
+            day.classList.add("day");
+            day.innerText = i + "";
+            if(i === +dayOfMonth) {
+                day.classList.add("today");
+            }
+
+            day.onclick = () => {
+                let selectedDay = document.querySelector(".days .selected");
+                if(selectedDay) {
+                    selectedDay.classList.remove("selected");
+                }
+                
+                day.classList.add("selected");
+            }
+            days.appendChild(day);
+        }
+    }
+    
+</script>
+</html>
